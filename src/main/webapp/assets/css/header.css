@@ -1,0 +1,112 @@
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+div {
+  font-family: "microsoft-yahei";
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+ul,
+li {
+  list-style: none;
+}
+body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow-x: hidden;
+}
+.visual-header {
+  height: 70px;
+  min-width: 1024px;
+  max-width: 100%;
+  background-color: #1B2B43;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+}
+.visual-header .header-logo {
+  float: left;
+}
+.visual-header .header-logo .logoimg {
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin: 10px 5px 0px 10px;
+}
+.visual-header .header-logo .logo-text {
+  float: left;
+  font-size: 25px;
+  color: #fff;
+  margin: 10px 10px 0 20px;
+  line-height: 50px;
+  vertical-align: middle;
+}
+.visual-header .header-navlists {
+  float: right;
+  margin-right: 50px;
+}
+.visual-header .header-navlists .navlists {
+  margin: 0;
+  padding: 0;
+  height: 70px;
+}
+.visual-header .header-navlists .navlists .navlist {
+  float: left;
+  margin: 0;
+  padding: 0 20px;
+  height: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  line-height: 70px;
+  vertical-align: middle;
+}
+.visual-header .header-navlists .navlists .navlist:hover {
+  background-color:#354d67;
+}
+.visual-header .header-navlists .navlists .navlist:hover a {
+  
+}
+.visual-header .header-navlists .navlists .navlist a {
+  line-height: 50px;
+  vertical-align: middle;
+  color: #fff;
+  text-decoration: none;
+}
+.visual-header .header-navlists .navlists .navlist .dropdown-menu > li > a {
+  color: #000;
+  font-size: 16px;
+}
+.visual-header .header-navlists .navlists .active {
+  background-color: #4a86c5;
+}
+.visual-header .login {
+  float: right;
+  margin: 10px 20px;
+  color: #fff;
+  line-height: 50px;
+  vertical-align: middle;
+}
+.visual-header .login .navlist-img {
+  width: 38px;
+  height: 38px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  padding: 4px;
+}
+.visual-header .login .logout {
+  color: #fff;
+}
+.visual-header .login .logout:hover {
+  text-decoration: underline;
+}

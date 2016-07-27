@@ -1,0 +1,216 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<script src="../assets/scripts/util/saveSvgAsPng.js"></script>
+	<script type="text/javascript" src="../assets/scripts/seajs/sea.js" id="seajsnode" data-config="../assets/scripts/config" data-main="./../assets/scripts/application"></script>
+	
+	<script type="text/javascript">
+		seajs.config({
+			alias:{
+				"jquery": "jquery/jquery.min.js",
+				"d3": "util/d3.min.js",
+				"echarts": "util/echarts.min.js",
+				"d3.layout.cloud": "util/d3.layout.cloud.js",
+				"saveSvgAsPng": "util/saveSvgAsPng.js",
+				"bootstrap": "bootstrap/bootstrap.min.js"
+			}
+		});
+		seajs.use("visual-index.js");
+
+	</script>
+</head>
+<body>
+	<div class="visual-header">
+		<div class="header-logo">
+			<img class="logoimg" src="../assets/images/logo2.png" alt="logo">
+			<h1 class="logo-text">网络数据与可视化平台</h1>
+		</div>
+		<div class="login">
+	   		<img class="navlist-img" src="../assets/images/user.png" alt="">
+	   		<span class="username">username</span>
+	   		| <a class="logout" href="login">退出</a>
+		</div>
+		<div class="header-navlists">
+			<ul class="navlists clearfix">
+				<li class="navlist"><a href="index">首页</a></li>
+			   <li class="navlist active"><a href="#">数据可视化分析</a></li>
+			   <li class="navlist"><a href="view">视图缓存</a></li>
+			   <li class="navlist "><a  href="visual-report"> HTML5报告 </a></li>
+			   <li class="navlist"><a href="#">使用指南</a></li>
+			</ul>
+		</div>
+		
+	</div>
+	<div class="visual-container">
+		
+		<!-- 可视化首页 -->
+		<div class="container-index">
+			<div class="container-menu">
+				<ul class="menulists">
+					<li class="menulist active" data-index="1">数据源</li>
+					<li class="menulist" data-index="2">数据展示</li>
+					<li class="menulist" data-index="3">可视化视图</li>
+					<li class="menulist" data-index="4">可视化报告</li>
+				</ul>
+			</div>
+			<div class="container-main">
+				<!-- 数据导入 -->
+				<div class="main-import">
+					<div class="main-title"><span class="title-tg"></span>数据源</div>
+					<div class="import-area clearfix">
+						<ul id="myTab" class="nav nav-tabs import-choose">
+						   <li class="active">
+						   		<a href="#from-in" data-toggle="tab">系统数据</a>
+						   </li>
+						   <li><a href="#from-out" data-toggle="tab">导入数据</a></li>
+						</ul>
+						<div class="from-in" id="from-in">
+							 <div class="form-group ">
+								  <label for="name">数据列表</label>
+							      <select class="form-control source-fromin">
+							         
+							      </select>
+						   	</div>
+						</div>
+						<div class="from-out" id="from-out">
+							<form role="form" >
+								<div class="form-group ">
+									  <label for="name">数据格式</label>
+								      <select class="form-control source-fromout">
+								         <option value="api">接口API</option>
+								         <option value="excel">excel文件</option>
+								         <option value="txt">txt文件</option>
+								      </select>
+							   </div>
+							   <div class="form-out-div"></div>
+							</form>
+						</div>
+						<div class="btn btn-default import-next">下一步</div>
+					</div>
+				</div>
+				<!-- 数据表格 -->
+				<div class="main-table">
+					<div class="main-title"><span class="title-tg"></span>数据表格</div>
+					<div class="to-view">
+						<label for="布局选择">选择图形呈现方式：</label>
+						<select class="form-control select-layer">
+								 <option value="1">柱状图</option>
+						         <option value="2">折线图</option>
+						         <option value="3">饼状图</option>
+						         <option value="4">时序图</option>
+						         <option value="5">平行坐标图</option>
+						         <option value="6">层次树</option>
+						         <option value="7">力导向图</option>
+						         <option value="8">地理位置图</option>
+						         <option value="9">文本标签云</option>
+						</select>
+						<div class="btn btn-default table-next">下一步</div>
+					</div>
+					<div class="table-area"></div>
+				</div>
+				<!-- 可视化视图 -->
+				<div class="main-view">
+					<div class="main-title">
+						<span class="title-tg"></span>可视化视图
+						<div class=" btn btn-primary button-layer"><div class="layer-icon"></div>布局选择</div>
+					</div>
+					<div class="view-bt">
+						<div class=" btn btn-info button-layercache">
+							<div class="layercache-icon"></div>
+							视图缓存
+						</div>
+						<div class=" btn btn-info button-imgdown">
+							<div class="imgdown-icon"></div>
+							<span>图片下载</span>
+						</div>
+						<div class=" btn btn-default view-next">下一步</div>
+					</div>
+					<div class="view-area">
+						<div class="view-area-box" id="main"></div>
+					</div>
+					<!-- 布局栏 -->
+					<div class="layer">
+						<div class="button-hide"><div class="arrow-left"></div></div>
+						<ul class="layer-lists">
+
+							<li class="layer-list" data-layer="1"><div class=" icon pie-icon"></div>柱状图</li>
+							<li class="layer-list" data-layer="2"><div class=" icon bar-icon"></div>折线图</li>
+							<li class="layer-list" data-layer="3"><div class="icon line-icon"></div>饼状图</li>
+							<li class="layer-list" data-layer="4"><div class=" icon timeline-icon"></div>时序图</li>
+							<li class="layer-list" data-layer="5"><div class=" icon parallel-icon"></div>平行坐标图</li>
+							<li class="layer-list" data-layer="6"><div class=" icon tree-icon"></div>层次树</li>
+							<li class="layer-list" data-layer="7"><div class=" icon ford-icon"></div>力导向图</li>
+							<li class="layer-list" data-layer="8"><div class="icon map-icon"></div>地理位置图</li>
+							<li class="layer-list" data-layer="9"><div class=" icon wordle-icon"></div>文本标签云</li>
+							<li class="layer-list" data-layer="10"><div class="icon radar-icon"></div>雷达图</li>
+							<li class="layer-list" data-layer="11"><div class=" icon more-icon"></div>更多</li>
+						</ul>	
+					</div>
+				</div>
+				<!-- view end -->
+				<!--html报告  -->
+				<div class="main-report">
+					<!-- <div class="main-title">
+						<span class="title-tg"></span>可视化报告
+					</div> -->
+					<div class="report-bt">
+						<div class=" btn btn-default button-publish">发布</div>
+						<div class=" btn btn-default button-report-save">暂存</div>
+					</div>
+					<!-- <div class="report-area"> -->
+						<div class="report-edit">
+							<div class="edit-des">
+								<div class="des-title" contenteditable="true">数据报告标题（点击修改）</div>
+								<textarea name="" class="des-con"></textarea>
+							</div>
+							<div class="edit-chart">
+								<div class="chart-title">数据图表标题<div class="chart-desicon"></div></div>
+								<div class="chart-con">
+									<div class="chart-con-add">+</div>
+									<div class="chart-con-view">图标图表图表</div>
+									<div class="chart-con-des">数据图表标题数据图表标题数据图表标题数据图表标题数据图表标题</div>
+								</div>
+							</div>
+							<div class="edit-addchart">添加新的视图</div>
+						</div>
+						
+					<!-- </div> -->
+				</div>
+				<!--html报告  -->
+				
+			</div>
+		</div>
+	</div>
+	<div class="visual-footer">
+        Copyright © CAD大数据中心
+    </div>
+	<div class="popup">
+		<div class="popup-bg"></div>
+		<div class="edit-popup">
+			
+			<div class="popup-tl">自定义视图 <div class="popup-cl"></div></div>
+			<div class="popup-con">
+				<div class="form-group">
+					<label for="" class=" col-sm-3 control-label">视图列表</label>
+					<select name="" id="" class="form-t col-sm-7 ">
+						<option value="">1</option>
+						<option value="">2</option>
+						<option value="">3</option>
+						<option value="">4</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">视图标题</label>
+					<input type="text" class="form-t col-sm-7">
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">视图背景描述</label>
+					<textarea name="" id="" class="form-t col-sm-7" rows="3"></textarea>
+				</div>
+			</div>
+			<div class="popup-btn"><span class="btn-add">添加</span><span class="btn-cancel">取消</span></div>
+		</div>
+	</div>
+</body>
+</html>

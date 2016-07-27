@@ -1,0 +1,596 @@
+*{
+	font-family: "microsoft yahei";
+}
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+div {
+  font-family: "microsoft yahei";
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+ul,
+li {
+  list-style: none;
+}
+html{
+	height:100%;
+}
+body {
+  background: #eff0f4;
+}
+.visual-container {
+  min-width: 1024px;
+  min-height: 600px;
+  margin-top:75px;
+  position: relative;
+}
+.visual-container .container-index {
+  position: relative;
+}
+.visual-container .container-index .container-menu {
+  width: 220px;
+  height: 500px;
+  float: left;
+  position: fixed;
+  top: 100px;
+}
+.visual-container .container-index .container-menu .menulists {
+  padding: 0 20px;
+}
+.visual-container .container-index .container-menu .menulists > .menulist {
+  width: 180px;
+  height: 60px;
+  background-color: #354d67;
+  line-height: 60px;
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: bolder;
+  color: #fff;
+  border-bottom: 1px solid #1a2633;
+}
+.visual-container .container-index .container-menu .menulists > .menulist:before {
+  content: '';
+  display: block;
+  float: left;
+  background: url('../images/title-tag.png') no-repeat;
+  width: 16px;
+  height: 16px;
+  margin: 22px 15px;
+}
+.visual-container .container-index .container-menu .menulists .active {
+  background-color: #2a3d53;
+}
+.visual-container .container-index .container-main {
+  margin-left: 224px;
+  height: 100%;
+  /* background: #fff; */
+  /*box-shadow: 0 1px 3px #d0d0d0;*/
+}
+.visual-container .container-index .container-main .main-title {
+  color: #1f2425;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+  background-color: #fff;
+  border-bottom: 2px solid #ddd;
+  font-size: 20px;
+  font-weight: bold;
+}
+.visual-container .container-index .container-main .main-title .title-tg {
+  display: inline-block;
+  float: left;
+  margin: 17px;
+  width: 16px;
+  height: 16px;
+  background: url('../images/main-title.png') no-repeat;
+}
+.visual-container .container-index .container-main .main-import {
+  height: 100%;
+}
+.visual-container .container-index .container-main .main-import > .import-area {
+  width: 700px;
+  margin: 0 auto;
+  background-color: #fff;
+  margin-top: 10px;
+  border-radius: 1px;
+  padding: 10px 30px;
+  box-shadow: -3px 0 3px #ccc, /*左边阴影*/ 3px 0 3px #ccc, /*右边阴影*/ 0 3px 3px #ccc, /*顶部阴影*/ 0 3px 3px #ccc;
+  /*底边阴影*/
+}
+.visual-container .container-index .container-main .main-import > .import-area .form-group {
+  width: 400px;
+  margin: 15px auto;
+}
+.visual-container .container-index .container-main .main-import > .import-area .btn {
+  float: right;
+  margin-top: 10px;
+}
+.visual-container .container-index .container-main .main-import > .import-area .from-in {
+  margin-top: 20px;
+  min-height: 200px;
+}
+.visual-container .container-index .container-main .main-import > .import-area .from-out {
+  display: none;
+  margin-top: 20px;
+  min-height: 200px;
+}
+.visual-container .container-index .container-main .main-import > .import-area .import-next {
+  /*margin-top: 50px;*/
+}
+.visual-container .container-index .container-main .main-table {
+  background-color: #fff;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: none;
+}
+.visual-container .container-index .container-main .main-table .to-view {
+  margin: 20px ;
+}
+.visual-container .container-index .container-main .main-table .to-view .form-control {
+  display: inline;
+  width: 200px;
+}
+.visual-container .container-index .container-main .main-table .table-area {
+  padding: 0 20px ;
+}
+.visual-container .container-index .container-main .main-view {
+  background-color: #fff;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: none;
+  /*layer*/
+}
+.visual-container .container-index .container-main .main-view .main-title > .button-layer {
+  float: right;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: #354d67;
+  font-size: 18px;
+}
+.visual-container .container-index .container-main .main-view .main-title > .button-layer .layer-icon {
+  float: left;
+  width: 21px;
+  height: 21px;
+  margin-top: 2px;
+  margin-right: 10px;
+  background: url('../images/layer.png') no-repeat;
+}
+.visual-container .container-index .container-main .main-view .view-bt {
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  width: 120px;
+}
+.visual-container .container-index .container-main .main-view .view-bt .button-layercache,
+.visual-container .container-index .container-main .main-view .view-bt .button-imgdown,
+.visual-container .container-index .container-main .main-view .view-bt .view-next {
+  width: 120px;
+  margin-top: 11px;
+  font-size: 16px;
+}
+.visual-container .container-index .container-main .main-view .view-bt .button-layercache {
+  background-color: #2a3d53;
+  border: none;
+}
+.visual-container .container-index .container-main .main-view .view-bt .button-layercache .layercache-icon {
+  float: left;
+  width: 21px;
+  height: 21px;
+  margin-right: 10px;
+  background: url('../images/layercache.png') no-repeat;
+}
+.visual-container .container-index .container-main .main-view .view-bt .button-imgdown {
+  background-color: #2a3d53;
+  border: none;
+}
+.visual-container .container-index .container-main .main-view .view-bt .button-imgdown .imgdown-icon {
+  float: left;
+  width: 21px;
+  height: 21px;
+  margin-right: 10px;
+  background: url('../images/download.png') no-repeat;
+}
+.visual-container .container-index .container-main .main-view .view-area > .dataproperty ul.datalists:after {
+  content: ".";
+  height: 0px;
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+.visual-container .container-index .container-main .main-view .view-area > .dataproperty ul.datalists li.datalist {
+  float: left;
+  font-size: 20px;
+  margin: 5px;
+  padding: auto 10px;
+  height: 30px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+}
+.visual-container .container-index .container-main .main-view .view-area > .dataproperty ul.datalists li.active {
+  border: 2px solid #463232;
+}
+.visual-container .container-index .container-main .main-view .view-area > .view-area-box {
+  margin: 20px;
+  width: 800px;
+  height: 500px;
+}
+.visual-container .container-index .container-main .main-view .layer {
+  position: absolute;
+  right: -200px;
+  top: 50px;
+  width: 200px;
+  background-color: #2a3d53;
+  box-shadow: 1px 1px 3px #C1C1C1;
+  height: 90%;
+}
+.visual-container .container-index .container-main .main-view .layer .button-hide {
+  width: 50px;
+  height: 100px;
+  background-color: #2a3d53;
+  position: absolute;
+  top: 40%;
+  left: -50px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.visual-container .container-index .container-main .main-view .layer .button-hide .arrow-left {
+  width: 40px;
+  height: 40px;
+  margin: 30px auto 0;
+  background: url('../images/arrow-left.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .button-hide .arrow-right {
+  background: url('../images/arrow-right.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists {
+  padding: 0 10px;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list {
+  border-bottom: 1px solid #dedede;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+  color: #cedadf;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list:hover {
+  background-color: #354d67;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .icon {
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin: 16px 20px;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .bar-icon {
+  background: url('../images/layer-icon/bar.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .pie-icon {
+  background: url('../images/layer-icon/pie.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .line-icon {
+  background: url('../images/layer-icon/line.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .map-icon {
+  background: url('../images/layer-icon/map.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .mj-icon {
+  background: url('../images/layer-icon/mj.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .parallel-icon {
+  background: url('../images/layer-icon/parallel.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .ford-icon {
+  background: url('../images/layer-icon/network.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .tree-icon {
+  background: url('../images/layer-icon/tree.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .radar-icon {
+  background: url('../images/layer-icon/radar.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .timeline-icon {
+  background: url('../images/layer-icon/timeline.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .wordle-icon {
+  background: url('../images/layer-icon/wordle.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .layer-lists .layer-list .more-icon {
+  background: url('../images/layer-icon/more.png') no-repeat;
+  background-size: contain;
+}
+.visual-container .container-index .container-main .main-view .layer .active {
+  background-color: #354d67;
+}
+.visual-container .container-index .container-main .main-report {
+ /*  background-color: #fff; */
+  display: none;
+  position: relative;
+  overflow-y: auto;
+  height: 100%;
+}
+.visual-container .container-index .container-main .main-report .report-bt {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  width: 80px;
+}
+.visual-container .container-index .container-main .main-report .report-bt .button-publish,
+.visual-container .container-index .container-main .main-report .report-bt .button-report-save {
+  margin-top: 11px;
+  width: 80px;
+}
+.visual-container .container-index .container-main .main-report .report-bt .button-publish {
+  background-color: #354d67;
+  color: #fff;
+  border: none;
+}
+.visual-container .container-index .container-main .main-report .report-area {
+  width: 750px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+.visual-container .container-index .container-main .main-report .report-area > .report-area-con {
+  padding: 20px 0;
+}
+.visual-container .container-index .container-main .main-report .report-area > .report-area-con .con-title {
+  width: 600px;
+  margin: 0 auto;
+  line-height: 50px;
+  margin-bottom: 20px;
+  border: 2px solid #dedede;
+  background: #fff;
+  border-radius: 5px;
+}
+.visual-container .container-index .container-main .main-report .report-area > .report-area-con .con-img {
+  margin: 0 auto 10px;
+  width: 400px;
+  height: 400px;
+  position: relative;
+}
+.visual-container .container-index .container-main .main-report .report-area > .report-area-con .con-img .img-box {
+  width: 400px;
+  height: 400px;
+}
+.visual-container .container-index .container-main .main-report .report-area > .report-area-con .con-img .img-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  visibility: hidden;
+  z-index: 2;
+}
+.visual-container .container-index .container-main .main-report .report-area > .report-area-con .con-text {
+  width: 600px;
+  margin: 0 auto;
+  min-height: 100px;
+  border: 2px solid #dedede;
+  background-color: #fff;
+  text-align: left;
+  padding: 20px;
+  color: black;
+  border-radius: 5px;
+}
+.visual-footer {
+    width: 100%;
+    background: #1B2B43;
+    padding: 20px 0 20px 18px;
+    text-align: center;
+    color: #FFF;
+    font-size: 12px;
+}
+.report-edit{
+    width: 750px;
+    margin: 0 auto;
+}
+.report-edit .edit-des{
+    background-color: #4F5153;
+    box-sizing: border-box;
+    width: 750px;
+    height: 200px;
+    padding: 10px;
+}
+.report-edit .edit-des .des-title{
+    border-bottom: 1px dashed #fff;
+    line-height: 35px;
+    width: 100%;
+    height: 35px;
+    color: #fff;
+    font-size: 20px;
+}
+.report-edit .edit-des .des-con{
+    box-sizing: border-box;
+    margin: 10px 0;
+    padding: 10px;
+    width: 730px;
+    height: 120px;
+}
+/*t图表样式*/
+.report-edit .edit-chart {
+    width: 100%;
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #B1B2C4;
+    border-top: none;
+    position: relative;
+}
+.report-edit .edit-chart .chart-title {
+    box-sizing: border-box;
+    background: url('../images/charttitle-bg.png') repeat-x;
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    padding-left: 10px;
+    position: relative;
+}
+.report-edit .edit-chart .chart-title .chart-desicon{
+    position: absolute;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    top: 5px;
+    background: url('../images/chart-des.png') no-repeat;
+}
+.report-edit .edit-chart .chart-con {
+    height: 350px;
+}
+.report-edit .edit-chart .chart-con .chart-con-view {
+    float: left;
+    width: 500px;
+    height: 100%;
+}
+.report-edit .edit-chart .chart-con .chart-con-add{
+    font-size: 100px;
+    color: #B1B2C4;
+    height: 150px;
+    width: 150px;
+    /* line-height: 150px; */
+    margin: 80px auto;
+    background-color: #eaeaea;
+    text-align: center;
+    position: absolute;
+    top: 60px;
+    left: 270px;
+}
+.report-edit .edit-chart .chart-con .chart-con-des {
+    background-color: rgba(255,255,255,0.6);
+    box-sizing: border-box;
+    padding: 20px;
+    height: 100%;
+    color: #333;
+    margin-left: 500px;
+    display: none;
+}
+.report-edit .edit-addchart {
+    line-height: 60px;
+    display: inline;
+    padding: 10px 20px;
+    background-color: #7B7B7B;
+    color: #fff;
+}
+.popup{
+    
+    display: none;
+}
+.popup .popup-bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+} 
+.edit-popup{
+    width: 750px;
+    height: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+       -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+         -o-transform: translateX(-50%) translateY(-50%);
+    background-color: #fff;
+}
+.edit-popup .popup-tl{
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    background-color: #f3f4f9;
+    padding-left: 10px;
+    font-size: 20px;
+    line-height: 60px;
+    color: #8C9098;
+    position: relative;
+}
+.edit-popup .popup-tl .popup-cl{
+    width: 20px;
+    height: 20px;
+    border: 2px solid #8C9098;
+    border-radius: 50%;
+    background: url('../images/close.gif') no-repeat;
+    background-position: 50% 50%;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+.edit-popup .popup-con{
+    height: 360px;
+    padding-top: 20px;
+}
+.edit-popup .popup-con .form-group {
+    clear: both;
+    display: block;
+ 	padding: 10px 0;
+    vertical-align: middle;
+}
+.edit-popup .popup-con .form-group .form-t{
+	display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	
+}
+.edit-popup .popup-btn{
+    height: 80px;
+    line-height: 80px;
+    background-color: #5F93E1;
+    color: #fff;
+    text-align: center;
+}
+.edit-popup .popup-btn .btn-add{
+     display: inline-block;
+    *display: inline; /* Fix for IE7 */
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 20px;
+    border-radius:  10px;
+    border: 2px solid #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+.edit-popup .popup-btn .btn-cancel{
+    color: #f0f0f0;
+    text-decoration: underline;
+    cursor: pointer;
+}

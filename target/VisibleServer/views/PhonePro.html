@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../assets/css/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../assets/css/index.css"/>
+		<link rel="stylesheet" href="../assets/css/PhonePro.css" />
+		<link rel="stylesheet" href="../assets/css/bigdata.css" />
+	</head>
+	<body>
+		<div class="visual-header">
+			<div class="header-logo">
+				<img class="logoimg" src="../assets/images/logo2.png" alt="logo">
+				<h1 class="logo-text">网络数据与可视化平台</h1>
+			</div>
+			<div class="header-navlists">
+				<ul class="navlists clearfix">
+					<li class="navlist active"><a href="index">首页</a></li>
+				   <li class="navlist"><a href="visual-index">数据可视化分析</a></li>
+				   <li class="navlist"><a href="view">视图缓存</a></li>
+				   <li class="navlist"><a  href="visual-report"> HTML5报告 </a></li>
+				   <li class="navlist"><a href="#">使用指南</a></li>
+				</ul>
+			</div>
+			
+		</div>
+		<div class="main-container">
+			<div class="wrap-one">
+				<div class="wrap-one-content clearfix">
+					<div class="img-wrap-one">
+						<img src="../assets/images/p.png"/>
+					</div>
+					<div class="content-wrap-one">
+						<span>手机病毒挖掘<small>Mobile phone virus mining</small></span>
+						<p>随着智能手机普及，手机病毒层出不穷，人们迫切需要检测防御手机病毒的方案。我们基于特征集针对网络流量数据进行手机病毒挖掘，旨在研发手机病毒数据挖掘引擎，维护网络安全。</p>
+					</div>
+				</div>
+			</div>
+			<div class="wrap-two">
+				<div class="wrap-two-content clearfix">
+					<div class="img-wrap-two ">
+						<img src="../assets/images/yuchuli.jpg"/>
+					</div>
+					<div class="content-wrap-two">
+						<span>1.预处理模块</span>
+						<p>分模块完成对属性值的离散化以及映射，主要针对本身取值为有限数量的离散值的属性进行直接一一映射处理。预处理步骤
+可以快速简便地完成映射工作,较好地体现原始数据的分布，丰富了原始数据集的表现能力，适合挖掘算法应用。
+</p>
+					</div>
+				</div>		
+			</div>
+			<div class="wrap-three">
+				<div class="wrap-three-content clearfix">
+					<div class="img-wrap-three clearfix">
+						<img src="../assets/images/guanlian.jpg"/>
+						<p class="pic-explain">关联规则单病毒测试结果</p>
+					</div>
+					<div class="content-wrap-three">
+						<span>2.关联规则模块</span>
+						<li>针对病毒数据，生成关联规则</li>
+						<li>设计增量子模块，完成模型的更新</li>
+						<li>设计相关的判断方法,从而利用模型进行判断</li>
+						<p>关联规则判断的准确率主要受置信度和病毒之间的相似性这两个主要因素的影响，其中置信度越高，得到的规则与病毒的关联性越强；同时如果病毒之间的相似性越高，得到的规则越相近，误判率越高。
+</p>
+					</div>
+				</div>
+			</div>
+			<div class="wrap-four">
+				<div class="wrap-four-content clearfix">
+					<div class="img-wrap-four">
+						<img src="../assets/images/xulie.jpg"/>
+						<p class="pic-explain">序列挖掘算法多属性测试结果（基于病毒60）</p>
+					</div>
+					<div class="content-wrap-four">
+						<span>3.序列模块</span>
+						<li>针对病毒数据，生成多属性序列模式</li>
+						<li>设计相关的判断方法，从而利用模型进行判断</li>
+						<p>序列挖掘算法判断的准确率主要受训练数据的完整性、频繁性以及相关参数设置等因素的影响，其中训练数据的完整性和频繁性直接影响的是序列模型所含的信息量，完整性越好，频繁性越大，得到的序列模型所包含的信息量越完整；适当调整支持度和匹配度，可以提高序列模型的判别准确率。
+</p>
+					</div>
+				</div>
+			</div>
+			<div class="wrap-five">
+				<div class="wrap-five-content clearfix">
+					<div class="img-wrap-five">
+						<img src="../assets/images/bayes.jpg"/>
+						<p class="pic-explain">单病毒测试结果</p>
+					</div>
+					<div class="content-wrap-five">
+						<span>4.朴素贝叶斯模块</span>
+						<li>针对单病毒数据，建立朴素贝叶斯模型</li>
+						<li>设计相关的判断方法,从而利用模型进行判断</li>
+						<p>朴素贝叶斯算法的判断准确率主要受建模数据的完整性和病毒相似性这两个主要因素的影响，其中建模数据越完备，分类效果越好；对于病毒相似性，尽量减少相似病毒出现在同一个训练集合里，从而减少误判率。</p>
+					</div>
+				</div>
+			</div>
+			<div class="wrap-six">
+				<div class="wrap-six-content clearfix">
+					<div class="img-wrap-six">
+						<img src="../assets/images/julei.jpg"/>
+						<p class="pic-explain">聚类算法多病毒测试结果</p>
+					</div>
+					<div class="content-wrap-six">
+						<span>5.聚类模块</span>
+						<li>针对多病毒数据，完成生成簇集的功能</li>
+						<li>设计增量子模块，完成模型的更新</li>
+						<li>设计相关的判断方法，利用模型进行判断</li>
+						<p>聚类算法的判断准确率主要受建模数据量、病毒配比和参数设置等因素的影响，其中建模数据量因素，各个病毒之间的建模数据量越平均，效果越好；对于病毒配比，尽量减少相似病毒出现在同一个训练集合里，从而减少误判率。
+</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="index-footer">
+				<div class="footer-info">
+					<div class="info-title">
+						<p>欢迎与我们取得联系，我们也非常期待与企业、开发者和高效合作研发产品。</p>
+						<p>联系地址：北京邮电大学科研楼817/802</p>
+						<p>联系电话：13810346286</p>
+					</div>
+				</div>
+				<footer>Copyright 2016 . All Rights Reserved.</footer>
+		</div>
+	</body>
+</html>

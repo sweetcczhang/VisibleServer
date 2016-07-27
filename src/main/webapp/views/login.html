@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据可视化系统</title>
+	<script type="text/javascript" src="../assets/scripts/seajs/sea.js" id="seajsnode"></script>
+	<script type="text/javascript">
+		seajs.config({
+			alias:{
+				"jquery": "jquery/jquery.min.js",
+				"d3": "util/d3.min.js",
+				"echarts": "util/echarts.min.js",
+				"d3.layout.cloud": "util/d3.layout.cloud.js",
+				"bootstrap": "bootstrap/bootstrap.min.js"
+			}
+		});
+		seajs.use("login.js");
+
+	</script>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="visual-header">
+			<div class="header-logo">
+				<img class="logoimg" src="../assets/images/logo2.png" alt="logo">
+				<h1 class="logo-text">数据可视化系统</h1>
+			</div>
+			
+		</div>
+		<div class="main">
+			<img src="../assets/images/bj.jpg" alt="" class="login-img">
+			<div class="login-title">用户登录</div>
+			<div class="login-wrap">
+				<div class="input-div"><label for="">用户名</label><input class="input-text" id="name" type="text"></div>
+				<div class="input-div"><label for="">密码</label><input class="input-text" id="pass" type="text"></div>
+				<div class="input-div"><label for="">验证码</label><input id="validateSelf" class="input-text" type="text"></div>
+				<div class="input-div"><label for=""></label><div id="validate"></div><div class="validate-text">换一题？</div></div>
+				<div class=" btn btn-default login-button" type="button">登录</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<span>免责声明&nbsp;|&nbsp;备案号：京ICP备15000234号-1&nbsp; Copyright © 北京邮电大学PCN&CAD中心</span>
+		</footer>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/baseurl.js"></script>
+	<script src="js/base64.js"></script>
+	<script src="js/login.js"></script>
+</body>
+</html>

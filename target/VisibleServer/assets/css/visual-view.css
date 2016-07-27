@@ -1,0 +1,116 @@
+.page-view {
+  min-width: 1024px;
+  height: 100%;
+  background-color: #fafafa;
+}
+.page-view .view-display {
+  margin-top: 60px;
+  height: 100%;
+}
+.page-view .view-datalists {
+  width: 200px;
+  float: left;
+  height: 100%;
+  background-color: #2c4159;
+  color: #a8b0b9;
+}
+.page-view .view-datalists .view-title {
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+  padding: 0 20px;
+  background-color: #354d67;
+  border-bottom: 1px solid #1a2633;
+  color: #fff;
+}
+.page-view .view-datalists .datalists {
+  padding: 0;
+  list-style-type: disc;
+  overflow: auto;
+}
+.page-view .view-datalists .datalists > .datalist {
+  list-style: disc;
+  display: block;
+  margin: 0 15px;
+  padding: 0;
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  border-bottom: 1px solid #1a2633;
+}
+.page-view .view-datalists .datalists > .datalist:hover {
+  color: #89c7f5;
+  padding-left: 10px;
+}
+.page-view .view-datalists .datalists > .active {
+  color: #89c7f5;
+  padding-left: 10px;
+}
+.page-view .view-datadisplay {
+  margin-left: 210px;
+  background-color: #fff;
+  height: 100%;
+  box-shadow: 0 0 3px #ddd;
+}
+.page-view .view-datadisplay .datadisplay-choose {
+  padding: 0 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  height: 50px;
+  color: #1f2425;
+}
+.page-view .view-datadisplay .datadisplay-choose .tablist > a {
+  margin-top: 4px;
+  border: none;
+  color: #1f2425;
+}
+.page-view .view-datadisplay .datadisplay-choose .tablist > a:hover {
+  color: #cedadf;
+  background-color: #354d67;
+}
+.page-view .view-datadisplay .datadisplay-choose .active > a {
+  color: #cedadf;
+  background-color: #354d67;
+}
+.page-view .view-datadisplay .datadisplay-table,
+.page-view .view-datadisplay .datadisplay-view {
+  height: 90%;
+  margin-top: 20px;
+  overflow: auto;
+}
+.page-view .view-datadisplay .datadisplay-view {
+  display: none;
+}
+.page-view .view-datadisplay .datadisplay-view .dataproperty {
+  min-height: 50px;
+}
+.page-view .view-datadisplay .datadisplay-view .dataproperty ul.datalists {
+  height: 50px;
+}
+.page-view .view-datadisplay .datadisplay-view .dataproperty ul.datalists:after {
+  content: ".";
+  height: 0px;
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+.page-view .view-datadisplay .datadisplay-view .dataproperty ul.datalists li.datalist {
+  float: left;
+  font-size: 20px;
+  margin: 5px;
+  padding: auto 10px;
+  height: 30px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+}
+.page-view .view-datadisplay .datadisplay-view .dataproperty ul.datalists li.active {
+  border: 2px solid #463232;
+}
+.page-view .view-datadisplay .datadisplay-view .view-area-box {
+  margin: 20px;
+  width: 800px;
+  height: 500px;
+}

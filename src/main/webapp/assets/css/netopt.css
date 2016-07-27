@@ -1,0 +1,18 @@
+.content-wrap-one li,.content-wrap-two li,.content-wrap-three li,.content-wrap-four li,
+.content-wrap-five li,.content-wrap-six li,.content-wrap-seven li
+{
+	list-style-type: disc;
+	font-size: 16px;
+	line-height: 30px;
+	color:#777777;
+}
+.pic-explain
+{
+	float: left;
+	color:#777777;
+	font-size: 14px;
+	width:350px;
+	text-align: center;
+	padding-top: 5px;
+	
+}

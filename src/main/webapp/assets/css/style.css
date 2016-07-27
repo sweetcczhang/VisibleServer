@@ -1,0 +1,138 @@
+*{
+	margin: 0;
+	padding:0;
+	font-family: "microsoft yahei" ;
+	
+}
+body{
+	min-width: 800px;
+}
+ul,li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: #1b2b43;
+}
+.container{
+	width:100%;
+	
+}
+.navbar{
+	width: 100%;
+	height: 60px;
+	position: relative;
+	background-color: #f8f8f8;
+	padding:0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	text-align: right;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 1px 5px rgba(0,0,0,0.075);
+}
+.navbar img{
+	display: inline-block;
+	float: left;
+	margin-left: 50px;
+	width: auto;
+	height: 60px;
+	vertical-align: middle;
+}
+.navlists{
+	float: right;
+	margin-right: 10%;
+}
+.navlists:after{
+	content: "\200B";
+	display: block;
+	height: 0;
+}
+.navlist{
+	float: left;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding: 0 15px;
+	height: 30px;
+	margin: 15px 10px;
+	text-align: center;
+	line-height: 30px;
+	vertical-align: middle;
+	font-size: 14px;
+	font-weight: bold;
+}
+.navlist:hover{
+	background: #1B2B43;
+}
+.navlist:hover a{
+	color: white;
+}
+.active{
+	background: #1B2B43;
+}
+.active a{
+	color: white;
+}
+/*底部样式*/
+.index-footer{
+	width: 100%;
+	/*height: 270px;*/
+	text-align: center;
+	color: #9b9999;
+	background-color: #333;
+	box-sizing:border-box ;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	
+}
+.footer-info{
+	display: inline-block;
+	margin:20px 0px;
+	box-sizing:border-box ;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	vertical-align: middle;
+}
+/*
+.info-title img{
+	display: inline-block;
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+	margin: 0;
+}
+.info-title .info-title-span{
+	display: inline-block;
+	font-size: 18px;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+	vertical-align: middle;
+	font-weight: bold;
+	color: white;
+}*/
+.info-title p{
+	font-size: 14px;
+	line-height: 28px;
+	vertical-align: middle;
+}
+.contact-info span{
+	display: inline-block;
+	font-size: 14px;
+	width: 300px;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	font-weight: normal;
+	color: #9b9999;
+	padding-right: 50px;
+}
+footer{
+	border-top: 1px solid #9B9999;
+	height: 45px;
+	background-color: #333;
+	font-size: 14px;
+	line-height: 45px;
+	vertical-align: middle;
+	text-align: center;
+}

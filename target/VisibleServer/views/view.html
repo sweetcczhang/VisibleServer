@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../assets/scripts/seajs/sea.js" id="seajsnode"></script>
+	<script type="text/javascript">
+		seajs.config({
+			alias:{
+				"jquery": "jquery/jquery.min.js",
+				"d3": "util/d3.min.js",
+				"echarts": "util/echarts.min.js",
+				"d3.layout.cloud": "util/d3.layout.cloud.js",
+				"bootstrap": "bootstrap/bootstrap.min.js"
+			}
+		});
+		seajs.use("visual-view.js");
+
+	</script>
+</head>
+<body>
+	<div class="page-view">
+		<!--  -->
+		<div class="visual-header">
+			<div class="header-logo">
+				<img class="logoimg" src="../assets/images/logo2.png" alt="logo">
+				<h1 class="logo-text">网络数据与可视化平台</h1>
+			</div>
+			<div class="login">
+		   		<img class="navlist-img" src="../assets/images/user.png" alt="">
+		   		<span class="username">username</span>
+		   		| <a class="logout" href="login">退出</a>
+			</div>
+			<div class="header-navlists">
+				<ul class="navlists clearfix">
+					<li class="navlist"><a href="index">首页</a></li>
+				   <li class="navlist "><a href="visual-index">数据可视化分析</a></li>
+				   <li class="navlist active"><a href="#">视图缓存</a></li>
+				   <li class="navlist "><a  href="visual-report"> HTML5报告 </a></li>
+				   <li class="navlist"><a href="#">使用指南</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="view-display">
+			<div class="view-datalists">
+				<div class="view-title">
+					<span class="title">数据列表</span>
+					<!-- <div class="button-hidden">收起</div> -->
+				</div>
+				<ul class="datalists">
+					
+				</ul>
+			</div>
+			<div class="view-datadisplay">
+				<ul id="myTab" class="nav nav-tabs datadisplay-choose">
+				   <li class=" tablist active">
+				   		<a href="#datadisplay-table" data-toggle="tab">数据展示</a>
+				   </li>
+				   <li class = "tablist"><a href="#datadisplay-view" data-toggle="tab">数据视图</a></li>
+				</ul>
+				<div class="datadisplay-table" id="datadisplay-table">
+							
+				</div>
+				<div class="datadisplay-view" id="datadisplay-view">
+					vieww1111
+				</div>
+			</div>
+		</div>
+		<!--  -->
+	</div>
+</body>
+</html>

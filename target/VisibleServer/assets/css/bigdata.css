@@ -1,0 +1,127 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	font-family: "microsoft yahei";
+}
+ul,li
+{
+	list-style: none;
+}
+body
+{
+	width: 100%;
+	min-width: 1300px;
+	height:100%;
+}
+.clearfix:before,.clearfix:after
+{
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+.clearfix:after
+{
+	clear: both;
+}
+.visual-header
+{
+	margin-bottom: 20px;
+}
+.main-container
+{
+	width: 100%;
+	margin-top: 40px;
+}
+.wrap-one,.wrap-three,.wrap-five,.wrap-seven
+{
+	background-color: #F6F6F6;
+	width: 100%;
+}
+.wrap-one-content,.wrap-two-content,.wrap-three-content,.wrap-four-content,
+.wrap-five-content,.wrap-six-content,.wrap-seven-content
+{
+	padding: 40px 150px;
+}
+.wrap-one-content
+{
+	padding-top: 60px;
+}
+.content-wrap-one span
+{
+	font-size: 24px !important;
+}
+.content-wrap-one p,.content-wrap-one small
+{
+	font-size: 18px !important;
+	line-height: 35px !important;
+}
+.img-wrap-one,.img-wrap-three,.img-wrap-five,.img-wrap-seven
+{
+	float: left;
+	width: 350px;
+	height: 260px;
+	/*position: absolute;*/
+	overflow: hidden;
+}
+.img-wrap-one img,.img-wrap-two img,.img-wrap-three img,.img-wrap-four img,
+.img-wrap-five img,.img-wrap-six img,.img-wrap-seven img
+{
+	height: 100%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    left: 50%;
+    position: relative;
+	float:left;
+}
+.content-wrap-one,.content-wrap-three,.content-wrap-five,.content-wrap-seven
+{
+	float: right;
+	width:600px
+}
+.content-wrap-one span,.content-wrap-two span,.content-wrap-three span,.content-wrap-four span,
+.content-wrap-five span,.content-wrap-six span,.content-wrap-seven span
+{
+	font-size: 20px;
+	color: #333333;
+	display: block;
+	margin-bottom: 20px;
+}
+.content-wrap-one small/*,.content-wrap-two small,.content-wrap-three small,.content-wrap-four small*/
+{
+	font-size: 12px;
+	padding-left: 15px;
+}
+.content-wrap-one p,.content-wrap-two p,.content-wrap-three p,.content-wrap-four p,
+.content-wrap-five p,.content-wrap-six p,.content-wrap-seven p
+{
+	font-size: 16px;
+	line-height: 30px;
+	color:#777777;
+}
+.wrap-two,.wrap-four,.wrap-six
+{
+	background-color: #FFFFFF;
+	width: 100%;
+}
+.img-wrap-two,.img-wrap-four,.img-wrap-six
+{
+	float: right;
+	width: 350px;
+	height: 260px;
+	/*position: absolute;*/
+	overflow: hidden;
+}
+.content-wrap-two,.content-wrap-four,.content-wrap-six
+{
+	float: left;
+	width:600px
+}
+/*footer
+{
+	background-color: #333333;
+	width: 100%;
+	height: 250px;
+}*/

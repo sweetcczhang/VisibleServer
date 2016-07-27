@@ -1,0 +1,17 @@
+/*力导向图样式*/
+.forceLine {
+	 stroke: #444 ;
+	 stroke-width: 2 ;
+}
+  
+.forceCircle {
+	 stroke: black ;
+	 stroke-width: 2 ;
+  }
+  
+.forceText {
+  	 fill: black ;
+	 text-anchor: middle ;
+	 font-size: 12px;
+	 font-family: arial;
+}
