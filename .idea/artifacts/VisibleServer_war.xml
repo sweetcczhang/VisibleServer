@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="VisibleServer:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="VisibleServer.war">
+      <element id="artifact" artifact-name="VisibleServer:war exploded" />
+    </root>
+  </artifact>
+</component>
