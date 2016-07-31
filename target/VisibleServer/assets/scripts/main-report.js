@@ -4,7 +4,7 @@ define(function(require, exports, module){
 		        $('.popup').css('display', 'block');
 	     });
 		 $().on('click', '.btn-add', function() {
-
+			
 	     });
 	     $('.popup').on('click', '.btn-cancel , .popup-cl', function() {
 		        $('.popup').css('display', 'none');

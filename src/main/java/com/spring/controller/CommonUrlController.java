@@ -54,7 +54,10 @@ public class CommonUrlController {
 		// System.out.println("---productUpload---");
 		return suffix + "view";
 	}
-
+	@RequestMapping("developer")
+	public String developer(HttpServletRequest request) {
+		return suffix + "developer";
+	}
 	@RequestMapping("login")
 	public String login(HttpServletRequest request) {
 		return suffix + "login";

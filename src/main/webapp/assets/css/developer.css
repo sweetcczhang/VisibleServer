@@ -1,0 +1,37 @@
+.developerPage {
+    margin: 80px auto 0;
+    width: 870px;
+    background: #f7f7f7;
+}
+.list-group-item {
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+.developerPage pre {
+    margin: 10px auto;
+    position: relative;
+    white-space: normal;
+}
+.developerPage .prejs:after {
+    content: "JS";
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 20px;
+    color: #ccc;
+}
+.developerPage .precss:after {
+    content: "CSS";
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 20px;
+    color: #ccc;
+}
+.developerPage .prehtml:after {
+    content: "HTML";
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 20px;
+    color: #ccc;
+}

@@ -17,7 +17,7 @@ define(function(require, exports, module) {
 	
 
 	var layer = function(selector, data, index, fresh) {
-		$selector = $(selector)
+		$selector = $(selector);
 		var session = window.sessionStorage;
 		fresh = session.getItem('fresh');
 		index = parseInt(index);
