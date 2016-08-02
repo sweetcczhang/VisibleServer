@@ -408,189 +408,185 @@ body {
     font-size: 12px;
 }
 .report-edit{
-    width: 750px;
-    margin: 0 auto;
+  width: 750px;
+  margin: 0 auto;
 }
 .report-edit .edit-des{
-    background-color: #4F5153;
-    box-sizing: border-box;
-    width: 750px;
-    height: 200px;
-    padding: 10px;
+  background-color: #4F5153;
+  box-sizing: border-box;
+  width: 750px;
+  height: 200px;
+  padding: 10px;
 }
 .report-edit .edit-des .des-title{
-    border-bottom: 1px dashed #fff;
-    line-height: 35px;
-    width: 100%;
-    height: 35px;
-    color: #fff;
-    font-size: 20px;
+  border-bottom: 1px dashed #fff;
+  line-height: 35px;
+  width: 100%;
+  height: 35px;
+  color: #fff;
+  font-size: 20px;
 }
 .report-edit .edit-des .des-con{
-    box-sizing: border-box;
-    margin: 10px 0;
-    padding: 10px;
-    width: 730px;
-    height: 120px;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 10px;
+  width: 730px;
+  height: 120px;
 }
 /*t图表样式*/
 .report-edit .edit-chart {
-    width: 100%;
-    margin-top: 10px;
-    background: #fff;
-    border: 1px solid #B1B2C4;
-    border-top: none;
-    position: relative;
+  width: 100%;
+  margin-top: 10px;
+  background: #fff;
+  border: 1px solid #B1B2C4;
+  border-top: none;
+  position: relative;
 }
 .report-edit .edit-chart .chart-title {
-    box-sizing: border-box;
-    background: url('../images/charttitle-bg.png') repeat-x;
-    height: 40px;
-    width: 100%;
-    line-height: 40px;
-    padding-left: 10px;
-    position: relative;
+  box-sizing: border-box;
+  background: url('../images/charttitle-bg.png') repeat-x;
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+  padding-left: 10px;
+  position: relative;
 }
 .report-edit .edit-chart .chart-title .chart-desicon{
-    position: absolute;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    top: 5px;
-    background: url('../images/chart-des.png') no-repeat;
+  position: absolute;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  top: 5px;
+  background: url('../images/chart-des.png') no-repeat;
 }
 .report-edit .edit-chart .chart-con {
-    height: 350px;
+  position: relative;
 }
 .report-edit .edit-chart .chart-con .chart-con-view {
-    float: left;
-    width: 500px;
-    height: 100%;
+  width: 100%;
+  height: 350px;
 }
 .report-edit .edit-chart .chart-con .chart-con-add{
-    font-size: 100px;
-    color: #B1B2C4;
-    height: 150px;
-    width: 150px;
-    /* line-height: 150px; */
-    margin: 80px auto;
-    background-color: #eaeaea;
-    text-align: center;
-    position: absolute;
-    top: 60px;
-    left: 270px;
+  font-size: 100px;
+  color: #B1B2C4;
+  height: 150px;
+  width: 150px;
+  /* line-height: 150px; */
+  background-color: #eaeaea;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 .report-edit .edit-chart .chart-con .chart-con-des {
-    background-color: rgba(255,255,255,0.6);
-    box-sizing: border-box;
-    padding: 20px;
-    height: 100%;
-    color: #333;
-    margin-left: 500px;
-    display: none;
+  background-color: rgba(255,255,255,0.6);
+  box-sizing: border-box;
+  padding: 20px;
+  color: #333;
 }
 .report-edit .edit-addchart {
-    line-height: 60px;
-    display: inline;
-    padding: 10px 20px;
-    background-color: #7B7B7B;
-    color: #fff;
+  line-height: 60px;
+  display: inline;
+  padding: 10px 20px;
+  background-color: #7B7B7B;
+  color: #fff;
 }
-.popup{
-    
-    display: none;
+.popup-report{
+
+  display: none;
 }
 .popup .popup-bg {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0,0,0,0.5);
-} 
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.5);
+}
 .edit-popup{
-    width: 750px;
-    height: 500px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-       -moz-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
-         -o-transform: translateX(-50%) translateY(-50%);
-    background-color: #fff;
+  width: 750px;
+  height: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  background-color: #fff;
 }
 .edit-popup .popup-tl{
-    width: 100%;
-    height: 60px;
-    box-sizing: border-box;
-    background-color: #f3f4f9;
-    padding-left: 10px;
-    font-size: 20px;
-    line-height: 60px;
-    color: #8C9098;
-    position: relative;
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  background-color: #f3f4f9;
+  padding-left: 10px;
+  font-size: 20px;
+  line-height: 60px;
+  color: #8C9098;
+  position: relative;
 }
 .edit-popup .popup-tl .popup-cl{
-    width: 20px;
-    height: 20px;
-    border: 2px solid #8C9098;
-    border-radius: 50%;
-    background: url('../images/close.gif') no-repeat;
-    background-position: 50% 50%;
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #8C9098;
+  border-radius: 50%;
+  background: url('../images/close.gif') no-repeat;
+  background-position: 50% 50%;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
 }
 .edit-popup .popup-con{
-    height: 360px;
-    padding-top: 20px;
+  height: 360px;
+  padding-top: 20px;
 }
 .edit-popup .popup-con .form-group {
-    clear: both;
-    display: block;
- 	padding: 10px 0;
-    vertical-align: middle;
+  clear: both;
+  display: block;
+  padding: 10px 0;
+  vertical-align: middle;
 }
 .edit-popup .popup-con .form-group .form-t{
-	display: inline-block;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-	
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
 }
 .edit-popup .popup-btn{
-    height: 80px;
-    line-height: 80px;
-    background-color: #5F93E1;
-    color: #fff;
-    text-align: center;
+  height: 80px;
+  line-height: 80px;
+  background-color: #5F93E1;
+  color: #fff;
+  text-align: center;
 }
 .edit-popup .popup-btn .btn-add{
-     display: inline-block;
-    *display: inline; /* Fix for IE7 */
-    padding: 0 20px;
-    height: 40px;
-    line-height: 40px;
-    margin-right: 20px;
-    border-radius:  10px;
-    border: 2px solid #fff;
-    font-size: 18px;
-    cursor: pointer;
+  display: inline-block;
+  *display: inline; /* Fix for IE7 */
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 20px;
+  border-radius:  10px;
+  border: 2px solid #fff;
+  font-size: 18px;
+  cursor: pointer;
 }
 .edit-popup .popup-btn .btn-cancel{
-    color: #f0f0f0;
-    text-decoration: underline;
-    cursor: pointer;
+  color: #f0f0f0;
+  text-decoration: underline;
+  cursor: pointer;
 }
