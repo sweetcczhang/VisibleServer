@@ -1,7 +1,7 @@
 define(function(require, exports, module){
 	require('../css/visual-report.css');
 	$(function() {
-		var edit = '<div class="edit-chart">'
+		var edit = '<div class="edit-chart" id="ID">'
 			+'<div class="chart-title">数据图表标题<div class="chart-desicon"></div></div>'
 			+'<div class="chart-con">'
 			+'<div class="chart-con-add">+</div>'
@@ -19,7 +19,9 @@ define(function(require, exports, module){
 		        $('.popup-report').css('display', 'none');
 	     });
 		$('.edit-addchart').on('click', function() {
-			$(this).before(edit);
+			var id = (new Date()).getTime();
+			var div = edit.replace('ID', id);
+			$(this).before(div);
 		});
 	})
 })
