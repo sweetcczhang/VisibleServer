@@ -27,23 +27,53 @@ define(function(require, exports, module){
 			 		jsonp: 'callback',
 			 		crossDomain:true,
 			 		success:function (data) {
-			 			var option = '';
-			 			for( var i = 0; i < data.list; i++) {
-			 				var s = data.list[i];
-			 				var n = randomNum();
-			 				source[n] = s;
-			 				option += '<option value = '+ n +' >'+ s.title + '</option>';
-			 			}
-			 			$('.source-fromin').append(option);
+			 			creatTable(data);
 			 		},
 			 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 		                console.log(XMLHttpRequest.status);
-			 			var option = '';
-						for(var i in source) {
-							option += '<option value = '+ i +' >'+ source[i].title + '</option>';
-						}
-						$('.source-fromin').append(option);
+			 			creatTable(null);
 		            }
+			});
+			//生成表格
+			function creatTable(data) {
+				if(!!data === false) {
+					data = {};
+					data.list = [];
+					for(var i in source) {
+						data.list.push({id: randomNum(), data: source[i]});
+					}
+				}
+				var session = window.sessionStorage;
+				session.setItem('userData',JSON.stringify(data));
+
+				var tr = [];
+				for( var i = 0; i < data.list.length; i++) {
+	 				var s = data.list[i];
+	 				var op = '<tr><td>'+ s.id + '</td><td>'+s.data.title+'</td><td>'+s.data.relationtype+'</td><td><span class="td-cho">选择</span>|<span class="td-del">删除</td></tr>';
+	 				tr.push(op);
+			 	}
+			 	var table = '<table class="table table-bordered  table-striped">'+
+							        '<thead>'+
+							         ' <tr>'+
+							            '<th>数据标识</th>'+
+							            '<th>数据标题</th>'+
+							            '<th>数据类型</th>'+
+							            '<th>数据操作</th>'+	
+							          '</tr>'+
+							        '</thead>'+
+							        '<tbody>'
+							        + tr.join('') +
+							       	'</tbody>'+	
+							    '</table>';
+				$('.from-in').append(table);
+			}
+			$('.from-in').on('click','.td-cho', function() {
+				var index = $(this).parents('tr').index();
+				alert(index);
+				var session = window.sessionStorage;
+				var userData = JSON.parse(session.getItem('userData'));
+				console.log(userData.list[index]);
+				tomaintable(userData.list[index].data);
 			});
 			//import 数据来源选择
 			$('.import-choose').on('click','li', function(){
@@ -171,17 +201,17 @@ define(function(require, exports, module){
 					}
 				
 				}
-				function tomaintable(data) {
+				
+			});
+			function tomaintable(data) {
 					var session = window.sessionStorage;
 					session.setItem('current',JSON.stringify(data));
 					current = data;
 		 			$('.container-main').children().css('display',"none");
 					$('.main-table').css('display', 'block');
-					table('.table-area', current, refresh);
+					table('.table-area', current, false);
 					changemenu(1);
 				}
-				
-			});
 			function sendAPI(api, fn){
 						$.ajax({
 					 		type:'get',

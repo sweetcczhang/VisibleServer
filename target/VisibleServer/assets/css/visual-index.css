@@ -95,7 +95,6 @@ body {
   height: 100%;
 }
 .visual-container .container-index .container-main .main-import > .import-area {
-  width: 700px;
   margin: 0 auto;
   background-color: #fff;
   margin-top: 10px;
@@ -114,12 +113,22 @@ body {
 }
 .visual-container .container-index .container-main .main-import > .import-area .from-in {
   margin-top: 20px;
-  min-height: 200px;
+  min-height: 400px;
+}
+.visual-container .container-index .container-main .main-import > .import-area .from-in td {
+  max-width: 200px;
+  font-size: 14px;
+}
+.visual-container .container-index .container-main .main-import > .import-area .from-in td span{
+  cursor: pointer;
+}
+.visual-container .container-index .container-main .main-import > .import-area .from-in td span:hover {
+  text-decoration: underline;
 }
 .visual-container .container-index .container-main .main-import > .import-area .from-out {
   display: none;
   margin-top: 20px;
-  min-height: 200px;
+  min-height: 400px;
 }
 .visual-container .container-index .container-main .main-import > .import-area .import-next {
   /*margin-top: 50px;*/

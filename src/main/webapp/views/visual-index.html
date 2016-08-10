@@ -17,7 +17,6 @@
 			}
 		});
 		seajs.use("visual-index.js");
-
 	</script>
 </head>
 <body>
@@ -61,17 +60,12 @@
 					<div class="import-area clearfix">
 						<ul id="myTab" class="nav nav-tabs import-choose">
 						   <li class="active">
-						   		<a href="#from-in" data-toggle="tab">系统数据</a>
+						   		<a href="#from-in" data-toggle="tab">已导入数据</a>
 						   </li>
-						   <li><a href="#from-out" data-toggle="tab">导入数据</a></li>
+						   <li><a href="#from-out" data-toggle="tab">新建导入</a></li>
 						</ul>
 						<div class="from-in" id="from-in">
-							 <div class="form-group ">
-								  <label for="name">数据列表</label>
-							      <select class="form-control source-fromin">
-							         
-							      </select>
-						   	</div>
+
 						</div>
 						<div class="from-out" id="from-out">
 							<form role="form" >
@@ -79,14 +73,15 @@
 									  <label for="name">数据格式</label>
 								      <select class="form-control source-fromout">
 								         <option value="api">接口API</option>
-								         <option value="excel">excel文件</option>
-								         <option value="txt">txt文件</option>
+								         <option value="excel">EXCEL文件</option>
+								         <option value="txt">TXT文件</option>
 								      </select>
 							   </div>
 							   <div class="form-out-div"></div>
 							</form>
+							<div class="btn btn-default import-next">下一步</div>
 						</div>
-						<div class="btn btn-default import-next">下一步</div>
+						
 					</div>
 				</div>
 				<!-- 数据表格 -->

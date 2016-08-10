@@ -63,7 +63,11 @@ body {
 
 .clearfix {
     *zoom:1}
-
+#main {
+    width:100%;
+    height: 300px;
+    
+}
 .menu-wrapper {
     position: fixed;
     top: 70px;

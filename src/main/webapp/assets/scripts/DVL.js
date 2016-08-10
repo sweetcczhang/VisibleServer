@@ -1,7 +1,7 @@
 /**
  * Created by dany on 2016/7/30.
  */
-var DVl = {
+var DVL = {
    pie: function($selector, data) {
        data = model.change(data , 3);
        drawPie($selector, data);
@@ -20,6 +20,7 @@ var DVl = {
     },
     timeLine: function($selector, data) {
         data = model.change(data, 4);
+        console.log(data);
         drawTimeline($selector, data)
     },
     parallel: function($selector, data) {
