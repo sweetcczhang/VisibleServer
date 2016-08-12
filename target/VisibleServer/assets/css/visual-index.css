@@ -552,6 +552,20 @@ body {
   height: 360px;
   padding-top: 20px;
 }
+.edit-popup .popup-con .cache-box { 
+  width: 100%;
+  margin: 0 20px;
+}
+.edit-popup .popup-con .data-cache ,.edit-popup .popup-con .view-cache{
+    height: 50%;
+    text-align: center;
+}
+.edit-popup .popup-con .data-cache ,.edit-popup .popup-con .view-cache-box {
+  display: none;
+}
+.edit-popup .popup-con .data-cache ,.edit-popup .popup-con .data-cache-box {
+  display: none;
+}
 .edit-popup .popup-con .form-group {
   clear: both;
   display: block;
