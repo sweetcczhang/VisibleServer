@@ -1,4 +1,4 @@
-define(function(require,exports,moDule){
+define(function(require,exports,module){
 		require('jquery');
 		require('d3');
 		require('echarts');

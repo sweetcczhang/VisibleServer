@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>搜狐视频客户端完美适配iOS8</title>
+		<meta  name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+		<script type="text/javascript" src="../assets/scripts/slip.js"></script>
+		<link rel="stylesheet" href="../assets/css/report-view.css">
+	</head>
+	<body>
+		<div id="container">
+			<div id="wrap">
+				
+			</div>
+		</div>
+		<script>
+			(function () {
+			    var createStyle = function (cssText) {
+			        var document = window.document;
+			        var styleTag = document.createElement("style");
+			        styleTag.setAttribute("type", "text/css");
+			        styleTag.innerHTML = cssText;
+			        document.getElementsByTagName("head").item(0).appendChild(styleTag);
+			    };
+
+			    var ua = window.navigator.userAgent;
+			    var isMobile = ua.match(/(Android|iPhone|iPad)/);
+			    var width = 750;
+			    if (isMobile) {
+			        width = window.screen.width;
+			        createStyle('html { font-size: ' + width * 12 / 320 + 'px; font-family: "Helvetica"; }');
+			    } else {
+			        createStyle('html { font-size: ' + width * 12 / 320 + 'px; font-family: "黑体-简", "Helvetica"; } .page { width: ' + width + 'px; } ');
+			    }
+			}());
+		</script>
+		<script type="text/javascript">
+			var isWindowOrient = (window.orientation || 0) === 0;
+
+			var wrap = document.getElementById('wrap');
+			var container = document.getElementById('container');
+			
+			if (isWindowOrient) {
+				container.className = 'orient';
+			}
+
+			var total = 4;
+			var init = false;
+
+			var html = [];
+			var d_Template = '<div class="page">\
+					<div class="bg-corner1"><div class="bg-corner2"></div></div>\
+					<h1 class="page-title">TITLE</h1>\
+					<span class="page-des">CONTENT</span>
+				</div>';
+			var c_template = '<div class="page">\
+					<h3 class="content-title">TITLE</h3>\
+					<div class="content-view" id="DATAID">\
+						<span class="content-des">CONTENT</span>\
+					</div>
+				</div>';
+			for (var i = 1; i < total + 1; i++) {
+				var _i = i === 5 ? 1 : i;
+
+				html.push();
+			}
+
+			wrap.innerHTML = html.join('');
+
+			var slip = Slip(wrap, 'y')
+				.webapp()
+				.end(function() {
+					var orient = this.orient.join('');
+
+					if (orient.indexOf('up') > -1) {
+						if (!init) {
+							document.getElementsByTagName('b')[0].style.opacity = '0';
+							init = true;
+						}
+					}
+
+					console.log("p:" + this.page)
+
+				});
+
+			window.jump = function (page) {
+				slip.jump(page);
+			}
+
+		</script>
+	 
+	</body>
+</html>

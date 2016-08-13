@@ -12,7 +12,7 @@ define(function(require, exports, module){
 		 $('.report-edit').on('click', '.chart-con-add', function() {
 		        $('.popup-report').css('display', 'block');
 	     });
-		 $().on('click', '.btn-add', function() {
+		 $('.popup-btn'').on('click', '.btn-add', function() {
 
 	     });
 	     $('.popup-report').on('click', '.btn-cancel , .popup-cl', function() {
@@ -23,6 +23,12 @@ define(function(require, exports, module){
 			var div = edit.replace('ID', id);
 			$(this).before(div);
 		});
+		//弹出框返回上一步
+		$('.popup-report').on('click', '.goback', function() {
+			$('.data-cache-box').css('display', 'none');
+			$('.view-cache-box').css('display', 'none');
+			$('.cache-box').css('display', 'block');
+		});
 		//弹出框选择
 		$('.popup-report').on('click', '.data-cache , .view-cache', function() {
 			var co = parseInt($(this).data('co'));
@@ -31,9 +37,8 @@ define(function(require, exports, module){
 				$('.data-cache-box').css('display', 'block');
 				loadData();
 			} else if(co ===2) {
-				$('.cache-cache-box').css('display', 'block');
+				$('.view-cache-box').css('display', 'block');
 			}
-
 		});
 		function loadData() {
 			var api = '';
