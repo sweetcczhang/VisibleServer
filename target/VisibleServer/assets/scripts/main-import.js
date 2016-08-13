@@ -18,15 +18,18 @@ define(function(require, exports, module){
 				var date = new Date();
 				return date.getTime()
 			}
+			var api = './user/getallcache';
+			var userid = {userid: 1};
 			$.ajax({
 			 		type:'get',
-			 		url: '',
+			 		url: api,
 			 		async: true,
-			 		data: '',
+			 		data: userid,
 			 		dataType:"jsonp",
 			 		jsonp: 'callback',
 			 		crossDomain:true,
 			 		success:function (data) {
+			 			console.log(data);
 			 			creatTable(data);
 			 		},
 			 		error: function(XMLHttpRequest, textStatus, errorThrown) {
