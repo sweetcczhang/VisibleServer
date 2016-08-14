@@ -27,32 +27,32 @@ public class UserController {
 
 
     @RequestMapping("/login")
-    public void login (HttpServletRequest request,
-                                  HttpServletResponse response,
-                                  @RequestParam("user") String user,
-                                  @RequestParam("pwd") String pwd) {
+    public void login(HttpServletRequest request,
+                      HttpServletResponse response,
+                      @RequestParam("user") String user,
+                      @RequestParam("pwd") String pwd) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
         String format = "{\"SUCCESS\":%b,\"code\":%d}";
-        int res = userService.login(user,pwd);
-        String ret = String.format(format,res > 0 ? true:false,res);
+        int res = userService.login(user, pwd);
+        String ret = String.format(format, res > 0 ? true : false, res);
 
         try {
             response.getWriter().write(ret);
 
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @RequestMapping("/addNewUserCache")
-    public void addNewUserCache (HttpServletRequest request,
-                       HttpServletResponse response,
-                       @RequestParam("userid") Integer userid,
-                       @RequestParam("usercache") String usercache) {
+    public void addNewUserCache(HttpServletRequest request,
+                                HttpServletResponse response,
+                                @RequestParam("userid") Integer userid,
+                                @RequestParam("usercache") String usercache) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setCharacterEncoding("utf-8");
@@ -60,21 +60,21 @@ public class UserController {
 
         String format = "{\"SUCCESS\":%b,\"code\":%d,\"DATA\":%s}";
 
-        userService.saveUserCache(userid,usercache);
+        userService.saveUserCache(userid, usercache);
 
         try {
-            String ret = String.format(format,true,0);
+            String ret = String.format(format, true, 0);
             response.getWriter().write(ret);
 
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @RequestMapping("/getallcache")
     public void getAllUserCacheByUserid(HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 @RequestParam("userid") Integer userid) {
+                                        HttpServletResponse response,
+                                        @RequestParam("userid") Integer userid) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setCharacterEncoding("utf-8");
@@ -83,16 +83,46 @@ public class UserController {
         String format = "{\"SUCCESS\":%b,\"code\":%d,\"DATA\":%s}";
 
         List<UserCache> list = userService.getUserCacheByUserid(userid);
-        List<UserCacheOrientedJson> listJson = list.stream().map(
-                userCache ->  new UserCacheOrientedJson().rcvUserCacheAndTransform(userCache)
-        ).collect(Collectors.toList());
 
-        String ret = JSON.toJSONString(listJson);
-        ret = String.format(format,true,0,ret);
+        String ret;
+        if (list != null) {
+            List<UserCacheOrientedJson> listJson = list.stream().map(
+                    userCache -> new UserCacheOrientedJson().rcvUserCacheAndTransform(userCache)
+            ).collect(Collectors.toList());
+            ret = JSON.toJSONString(listJson);
+            ret = String.format(format, true, 0, ret);
+        }else{
+            ret = String.format(format,false,0,"\"\"");
+        }
+        System.out.println(ret);
+
 
         try {
             response.getWriter().write(ret);
-        }catch (IOException e){
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping("/deleteUserCache")
+    public void deleteUserCache(HttpServletRequest request,
+                                HttpServletResponse response,
+                                @RequestParam("userid") Integer userid,
+                                @RequestParam("cacheid") Integer cacheid) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+
+        String format = "{\"SUCCESS\":%b,\"code\":%d}";
+
+        userService.deleteUserCache(userid, cacheid);
+
+        try {
+            String ret = String.format(format, true, 0);
+            response.getWriter().write(ret);
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

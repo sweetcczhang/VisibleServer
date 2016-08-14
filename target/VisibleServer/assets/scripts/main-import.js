@@ -3,6 +3,7 @@ define(function(require, exports, module){
 	var file = require('./ajaxfileupload');
 	var source = require('./sourcedataexample');
 	var changemenu = require('./menu-change');
+	var msgbox = require('./msgbox');
 
 	var current = source.sourceData7;
 	var session = window.sessionStorage;
@@ -18,25 +19,30 @@ define(function(require, exports, module){
 				var date = new Date();
 				return date.getTime()
 			}
-			var api = './user/getallcache';
-			var userid = {userid: 1};
-			$.ajax({
-			 		type:'get',
-			 		url: api,
-			 		async: true,
-			 		data: userid,
-			 		dataType:"jsonp",
-			 		jsonp: 'callback',
-			 		crossDomain:true,
-			 		success:function (data) {
-			 			console.log(data);
-			 			creatTable(data);
-			 		},
-			 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-		                console.log(XMLHttpRequest.status);
-			 			creatTable(null);
-		            }
-			});
+			loadData();
+			function loadData() {
+				var api = '../user/getallcache';
+				var userid = {userid: 1};
+				var session = window.sessionStorage;
+				session.setItem('userid', 1);
+				$.ajax({
+					type:'get',
+					url: api,
+					async: true,
+					data: userid,
+					dataType:"json",
+					jsonp: 'callback',
+					crossDomain:true,
+					success:function (data) {
+						console.log(data);
+						creatTable(data);
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log(XMLHttpRequest.status);
+						creatTable(null);
+					}
+				});
+			}
 			//生成表格
 			function creatTable(data) {
 				if(!!data === false) {
@@ -46,16 +52,21 @@ define(function(require, exports, module){
 						data.list.push({id: randomNum(), data: source[i]});
 					}
 				}
+
+				var tr = [];
+				for( var i = 0; i < data.DATA.length; i++) {
+	 				var s = data.DATA[i];
+	 				var op = '<tr><td>'+ s.id + '</td><td>'+s.title+'</td><td>'+s.relationtype+'</td><td><span class="td-cho" id="'+s.id+'">选择</span>|<span class="td-del" id="'+s.id+'">删除</td></tr>';
+	 				tr.push(op);
+					if(typeof s.relations != 'object') {
+						s.relations = JSON.parse(s.relations);
+					}
+
+			 	}
 				var session = window.sessionStorage;
 				session.setItem('userData',JSON.stringify(data));
 
-				var tr = [];
-				for( var i = 0; i < data.list.length; i++) {
-	 				var s = data.list[i];
-	 				var op = '<tr><td>'+ s.id + '</td><td>'+s.data.title+'</td><td>'+s.data.relationtype+'</td><td><span class="td-cho">选择</span>|<span class="td-del">删除</td></tr>';
-	 				tr.push(op);
-			 	}
-			 	var table = '<table class="table table-bordered  table-striped">'+
+				var table = '<table class="table table-bordered  table-striped">'+
 							        '<thead>'+
 							         ' <tr>'+
 							            '<th>数据标识</th>'+
@@ -68,15 +79,42 @@ define(function(require, exports, module){
 							        + tr.join('') +
 							       	'</tbody>'+	
 							    '</table>';
-				$('.from-in').append(table);
+				$('.from-in').html(table);
 			}
 			$('.from-in').on('click','.td-cho', function() {
 				var index = $(this).parents('tr').index();
-				alert(index);
+				//alert(index);
 				var session = window.sessionStorage;
 				var userData = JSON.parse(session.getItem('userData'));
-				console.log(userData.list[index]);
-				tomaintable(userData.list[index].data);
+				console.log(userData);
+				console.log(userData.DATA[index]);
+				tomaintable(userData.DATA[index]);
+			});
+			$('.from-in').on('click','.td-del', function() {
+				var id = $(this).attr('id');
+				var api = '/VisibleServer/user/deleteUserCache';
+				$.ajax({
+					type:'get',
+					url: api,
+					async: true,
+					data: {cacheid: id, userid: 1},
+					dataType:"json",
+					//jsonp: 'callback',
+					crossDomain:true,
+					success:function (data) {
+						msgbox.promp('删除成功');
+						loadData();
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log(XMLHttpRequest.status);
+						creatTable(null);
+					}
+				});
+				var session = window.sessionStorage;
+				var userData = JSON.parse(session.getItem('userData'));
+				console.log(userData);
+				console.log(userData.DATA[index]);
+				tomaintable(userData.DATA[index]);
 			});
 			//import 数据来源选择
 			$('.import-choose').on('click','li', function(){
@@ -157,7 +195,7 @@ define(function(require, exports, module){
 					$('.form-out-div').html(fromgroup.api() + fromgroup.fresh());
 				}
 				if(v ==='excel' || v ==='txt') {
-					dv = fromgroup.fileload()+ fromgroup.relty() + fromgroup.title();
+					dv = fromgroup.fileload()+ fromgroup.relty() + fromgroup.title() + fromgroup.desc();
 					$('.form-out-div').empty().append(dv);
 				}
 			});
@@ -195,11 +233,12 @@ define(function(require, exports, module){
 						var oj = {};
 						oj.type = sel;
 						oj.title = $('.title').val();
-						oj.describe = $('.describe').val();
+						oj.desc = $('.describe').val();
 						oj.fileAddr = $('.fileload').val();
 						oj.filename = $('.fileload').attr('name');
 						oj.fileID = $('.fileload').attr('id');
 						oj.relationtype = $('.relationtype').find('option:selected').val();
+						oj.userid = 1;
 						sendFILE(oj, tomaintable);
 					}
 				
@@ -239,11 +278,11 @@ define(function(require, exports, module){
 			}//sendAPI end;
 			function sendFILE(obj, fn) {
 				console.log(obj);
-				var url = 'upload_up';
+				var url = 'upload_file?userid=' + obj.userid + '&title='+obj.title +'&relationtype='+parseInt(obj.relationtype,10)+'&desc='+obj.desc;
 				var fileID = obj.fileID;
 				var filename = obj.filename;
 				var fileload = obj.fileload;
-//				
+				msgbox.promp('正在导入...');
 				file.ajaxFileUpload({
 					url : url, // 用于文件上传的服务器端请求地址
 					type : 'post',
@@ -254,32 +293,14 @@ define(function(require, exports, module){
 					data : '',
 					success : function(data, status) // 服务器成功响应处理函数
 					{
-						
-						var regx=/(\[.+])/;
+						msgbox.promp(' 导入成功');
+						console.log(data);
+						var regx=/(\{.*})/;
 						var data = data.match(regx)[0];
 						data = JSON.parse(data); 
-						var oj = {};
-						oj.objects=[];
-						oj.property =[];
-						oj.property.push(data[0].slice(1, data[0].length));
-						oj.title = obj.title;
-						oj.relationtype = obj.relationtype;
-						oj.relations = {};
-						
-						for(var i = 1; i<data.length; i++){
-							
-							
-							if(oj.relations.hasOwnProperty(data[i][0])){
-								oj.relations[data[i][0]].push(data[i].slice(1, data[i].length));
-							}else {
-								oj.relations[data[i][0]]=[];
-								oj.relations[data[i][0]].push(data[i].slice(1, data[i].length));
-								oj.objects.push(data[i][0]);
-							}
-							
-						}
+
 						if(typeof fn ==='function'){
-							fn(oj);
+							fn(data.DATA);
 						}
 						
 						

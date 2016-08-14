@@ -5,17 +5,22 @@ import javax.persistence.*;
 /**
  * Created by cuidanyang on 16/8/12.
  */
-@Entity
+@Entity()
 public class UserCache {
     @Id
     @Column(name = "user_cache_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
+    @Column(columnDefinition="MEDIUMTEXT")
     private String description;
-    private String relation;
+    @Column(columnDefinition="MEDIUMTEXT")
+    private String relations;
+    @Column(columnDefinition="MEDIUMTEXT")
     private String property;
-    private Integer relationType;
+    private Integer relationtype;
+    @Column(columnDefinition="MEDIUMTEXT")
+    private String objects;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
@@ -45,20 +50,12 @@ public class UserCache {
         this.description = description;
     }
 
-    public Integer getRelationType() {
-        return relationType;
+    public String getRelations() {
+        return relations;
     }
 
-    public void setRelationType(Integer relationType) {
-        this.relationType = relationType;
-    }
-
-    public String getRelation() {
-        return relation;
-    }
-
-    public void setRelation(String relation) {
-        this.relation = relation;
+    public void setRelations(String relations) {
+        this.relations = relations;
     }
 
     public String getProperty() {
@@ -69,11 +66,28 @@ public class UserCache {
         this.property = property;
     }
 
+    public Integer getRelationtype() {
+        return relationtype;
+    }
+
+    public void setRelationtype(Integer relationtype) {
+        this.relationtype = relationtype;
+    }
+
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getObjects() {
+        return objects;
+    }
+
+    public void setObjects(String objects) {
+        this.objects = objects;
     }
 }

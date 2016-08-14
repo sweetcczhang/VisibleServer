@@ -15,4 +15,6 @@ public interface UserService {
     public int login(String user,String password);
     public List<UserCache> getUserCacheByUserid(Integer id);
     public void saveUserCache(Integer userid,String userCache);
+    public UserCache saveUserCache(Integer userid,UserCache userCache);
+    public boolean deleteUserCache(Integer userid,Integer userCacheId);
 }

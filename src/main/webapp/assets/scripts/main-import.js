@@ -18,14 +18,14 @@ define(function(require, exports, module){
 				var date = new Date();
 				return date.getTime()
 			}
-			var api = './user/getallcache';
+			var api = '../user/getallcache';
 			var userid = {userid: 1};
 			$.ajax({
 			 		type:'get',
 			 		url: api,
 			 		async: true,
 			 		data: userid,
-			 		dataType:"jsonp",
+			 		dataType:"json",
 			 		jsonp: 'callback',
 			 		crossDomain:true,
 			 		success:function (data) {
@@ -46,16 +46,18 @@ define(function(require, exports, module){
 						data.list.push({id: randomNum(), data: source[i]});
 					}
 				}
+
+				var tr = [];
+				for( var i = 0; i < data.DATA.length; i++) {
+	 				var s = data.DATA[i];
+	 				var op = '<tr><td>'+ s.id + '</td><td>'+s.title+'</td><td>'+s.relationtype+'</td><td><span class="td-cho">选择</span>|<span class="td-del">删除</td></tr>';
+	 				tr.push(op);
+					s.relations = JSON.parse(s.relations);
+			 	}
 				var session = window.sessionStorage;
 				session.setItem('userData',JSON.stringify(data));
 
-				var tr = [];
-				for( var i = 0; i < data.list.length; i++) {
-	 				var s = data.list[i];
-	 				var op = '<tr><td>'+ s.id + '</td><td>'+s.data.title+'</td><td>'+s.data.relationtype+'</td><td><span class="td-cho">选择</span>|<span class="td-del">删除</td></tr>';
-	 				tr.push(op);
-			 	}
-			 	var table = '<table class="table table-bordered  table-striped">'+
+				var table = '<table class="table table-bordered  table-striped">'+
 							        '<thead>'+
 							         ' <tr>'+
 							            '<th>数据标识</th>'+
@@ -75,8 +77,9 @@ define(function(require, exports, module){
 				alert(index);
 				var session = window.sessionStorage;
 				var userData = JSON.parse(session.getItem('userData'));
-				console.log(userData.list[index]);
-				tomaintable(userData.list[index].data);
+				console.log(userData);
+				console.log(userData.DATA[index]);
+				tomaintable(userData.DATA[index]);
 			});
 			//import 数据来源选择
 			$('.import-choose').on('click','li', function(){
@@ -239,7 +242,7 @@ define(function(require, exports, module){
 			}//sendAPI end;
 			function sendFILE(obj, fn) {
 				console.log(obj);
-				var url = 'upload_up';
+				var url = 'upload_file';
 				var fileID = obj.fileID;
 				var filename = obj.filename;
 				var fileload = obj.fileload;
@@ -254,7 +257,7 @@ define(function(require, exports, module){
 					data : '',
 					success : function(data, status) // 服务器成功响应处理函数
 					{
-						
+						console.log(data);
 						var regx=/(\[.+])/;
 						var data = data.match(regx)[0];
 						data = JSON.parse(data); 

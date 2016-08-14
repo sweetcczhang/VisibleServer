@@ -6,6 +6,7 @@ import com.spring.domain.User;
 import com.spring.domain.UserCache;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by cuidanyang on 16/8/13.
@@ -13,12 +14,21 @@ import java.util.List;
 public class UserCacheOrientedJson {
     private Integer id;
     private String title;
-    private String description;
-    private String relation;
+    private String describe;
+    private Map<String, List<List<Object>>> relations;
     private List<List> property;
-    private Integer relationType;
-
+    private List<Object> objects;
+    private Integer relationtype;
     private Integer userid;
+
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
 
     public Integer getId() {
         return id;
@@ -36,20 +46,20 @@ public class UserCacheOrientedJson {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescribe() {
+        return describe;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
-    public String getRelation() {
-        return relation;
+    public Map<String, List<List<Object>>> getRelations() {
+        return relations;
     }
 
-    public void setRelation(String relation) {
-        this.relation = relation;
+    public void setRelations(Map<String, List<List<Object>>> relations) {
+        this.relations = relations;
     }
 
     public List<List> getProperty() {
@@ -60,40 +70,51 @@ public class UserCacheOrientedJson {
         this.property = property;
     }
 
-    public Integer getRelationType() {
-        return relationType;
+    public List<Object> getObjects() {
+        return objects;
     }
 
-    public void setRelationType(Integer relationType) {
-        this.relationType = relationType;
+    public void setObjects(List<Object> objects) {
+        this.objects = objects;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getRelationtype() {
+        return relationtype;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setRelationtype(Integer relationtype) {
+        this.relationtype = relationtype;
     }
 
-    public UserCacheOrientedJson rcvUserCacheAndTransform(UserCache userCache){
+    public UserCacheOrientedJson rcvUserCacheAndTransform(UserCache userCache) {
         this.id = userCache.getId();
-        this.description = userCache.getDescription();
+        this.describe = userCache.getDescription();
         this.title = userCache.getTitle();
-        this.relation = userCache.getRelation();
-        this.relationType = userCache.getRelationType();
+        this.relations = (Map<String, List<List<Object>>>) JSON.parse(userCache.getRelations());
+        this.relationtype = userCache.getRelationtype();
         this.userid = userCache.getUser() == null ? -1 : userCache.getUser().getId();
-        this.property = JSON.parseArray(userCache.getProperty(),List.class);
+
+        this.property = JSON.parseArray(userCache.getProperty(), List.class);
+        this.objects = JSON.parseArray(userCache.getObjects(), Object.class);
+
         return this;
 
     }
-    public UserCache transformToUsercache(){
+
+    public UserCache transformToUsercache() {
         UserCache userCache = new UserCache();
         userCache.setId(id);
-        userCache.setDescription(description);
-        userCache.setProperty(JSON.toJSONString(userCache.getProperty()));
-        userCache.setRelation(this.relation);
-        userCache.setRelationType(this.relationType);
+        userCache.setDescription(describe);
+
+        userCache.setProperty(JSON.toJSONString(property));
+        userCache.setObjects(JSON.toJSONString(objects));
+
+        System.out.println("property:" + JSON.toJSONString(property));
+        System.out.println("objects:" + JSON.toJSONString(objects));
+
+
+        userCache.setRelations(JSON.toJSONString(this.relations));
+        userCache.setRelationtype(this.relationtype);
         userCache.setTitle(this.title);
 
         return userCache;

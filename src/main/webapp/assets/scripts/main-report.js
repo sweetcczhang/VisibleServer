@@ -12,7 +12,7 @@ define(function(require, exports, module){
 		 $('.report-edit').on('click', '.chart-con-add', function() {
 		        $('.popup-report').css('display', 'block');
 	     });
-		 $('.popup-btn'').on('click', '.btn-add', function() {
+		 $('.popup-btn').on('click', '.btn-add', function() {
 
 	     });
 	     $('.popup-report').on('click', '.btn-cancel , .popup-cl', function() {

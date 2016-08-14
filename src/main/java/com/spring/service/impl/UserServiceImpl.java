@@ -1,13 +1,13 @@
 package com.spring.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.spring.dao.UserCacheDao;
 import com.spring.dao.UserDao;
 import com.spring.domain.User;
 import com.spring.domain.UserCache;
 import com.spring.jsonuserd.UserCacheOrientedJson;
 import com.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +22,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserCacheDao userCacheDao;
+
     @Override
     public int login(String user, String password) {
         if (user == null || user.length() == 0 || password == null || password.length() == 0)
@@ -52,5 +55,25 @@ public class UserServiceImpl implements UserService {
         UserCacheOrientedJson cacheJson = JSON.parseObject(userCache, UserCacheOrientedJson.class);
         user.getCacheSet().add(cacheJson.transformToUsercache());
         userDao.saveOrUpdate(user);
+    }
+
+    @Override
+    public UserCache saveUserCache(Integer userid, UserCache userCache) {
+        User user = userDao.get(User.class,userid);
+        if (user == null)
+            return null;
+
+        userCache.setUser(user);
+        System.out.println("-------" + userCache.getObjects() + "-------");
+        System.out.println("(" + userCache.getProperty()+")");
+        userCacheDao.saveOrUpdate(userCache);
+
+        return userCache;
+    }
+
+    @Override
+    public boolean deleteUserCache(Integer userid, Integer userCacheId) {
+        userCacheDao.delete(UserCache.class,userCacheId);
+        return false;
     }
 }
