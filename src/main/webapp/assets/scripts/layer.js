@@ -28,14 +28,15 @@ define(function(require, exports, module) {
 	var layer = function(selector, data, index, fresh) {
 		$selector = $(selector);
 		var session = window.sessionStorage;
-		fresh = session.getItem('fresh');
+		fresh = session.getItem('fresh') || false;
 		index = parseInt(index);
 		switch(index) {
-			case 1: setBar($selector, data, fresh);
+			case 1: setPie($selector, data, fresh);
 					break;
 			case 2: setLine($selector, data, fresh);
 					break;
-			case 3: setPie($selector, data, fresh);
+			case 3:
+					setBar($selector, data, fresh);
 					break;
 			case 4: setTimeline($selector, data, fresh);
 					break;
@@ -51,7 +52,7 @@ define(function(require, exports, module) {
 					setWord($selector, data, fresh);
 					break;
 			case 10:
-					setRadar($selector, data, fresh);
+					setHorizBar($selector, data, fresh);
 					break;
 			default:
 					console.log("default");
@@ -60,8 +61,6 @@ define(function(require, exports, module) {
 	function setBar($selector, data, fresh){
 		var data1 = model.change(data , 1);
 		if( data.property.length === 1){
-			
-				
 				var html='<div class="view-area-box" id="main"></div>';
 				$selector.html(html);
 				var main = document.getElementById('main');
