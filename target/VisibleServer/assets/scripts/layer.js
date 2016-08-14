@@ -17,8 +17,8 @@ define(function(require, exports, module) {
 
 	var source = require('./sourcedataexample');
 	var model = require('./model');
-	var c1 = source.sourceData1;
-	console.log(model.pieData(c1));
+	var c1 = source.sourceData2;
+	console.log(model.comLData(c1));
 	// var html='<div class="view-area-box" id="main" style = "height: 200px;"></div>';
 	// $('body').html(html);
 	// var main = document.getElementById('main');

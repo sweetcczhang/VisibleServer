@@ -1,5 +1,6 @@
 define(function(require,exports,module){
 	var match = require('./data-match');
+	require('./until/Underscore.js')
 	var model = {
 		'change': function(data, index) {
 			var $this = this;
@@ -103,7 +104,7 @@ define(function(require,exports,module){
 				var series = [];
 				for(i = 0; i < oj.length; i++) {
 					var name = oj[i];
-					series.push({name: name, vlaue: data.relations[name][0][0]});
+					series.push({name: name, value: data.relations[name][0][0]});
 				}
 				dobj.title = data.title;
 				dobj.property = data.property[0];
@@ -112,8 +113,25 @@ define(function(require,exports,module){
 			}
 			return dobj;
 		},
-		'comLengData': function(data) {
-			
+		'pieToCom': function(data) {
+
+		},
+		'comLData': function(data) {
+			//二维数据格式{
+			// title:,
+			// property:,
+			// series:[{
+			// name:
+			// data:[]}]
+			//
+			// }
+			if(data) {
+				for(var i = 0; i<data.objects.length;i++) {
+					var name = data.objects[i];
+					var arr = _.unzip(data.relations[name]);
+					console.log(arr);
+				}
+			}
 			console.log(data);
 			
 		},

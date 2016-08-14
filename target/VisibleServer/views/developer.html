@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开发者页面</title>
+    <script type="text/javascript" src="../assets/scripts/seajs/sea.js" id="seajsnode" data-config="../assets/scripts/config" data-main="./../assets/scripts/application"></script>
+
+    <script type="text/javascript">
+        seajs.config({
+            alias:{
+                "jquery": "jquery/jquery.min.js",
+                "d3": "util/d3.min.js",
+                "echarts": "util/echarts.min.js",
+                "d3.layout.cloud": "util/d3.layout.cloud.js",
+                "saveSvgAsPng": "util/saveSvgAsPng.js",
+                "bootstrap": "bootstrap/bootstrap.min.js"
+            }
+        });
+        seajs.use("developer.js");
+
+    </script>
+</head>
+<body>
+    <div class="visual-header">
+        <div class="header-logo">
+            <img class="logoimg" src="../assets/images/logo2.png" alt="logo">
+            <h1 class="logo-text">网络数据与可视化平台</h1>
+        </div>
+        <div class="login">
+            <img class="navlist-img" src="../assets/images/user.png" alt="">
+            <span class="username">username</span>
+            | <a class="logout" href="login">退出</a>
+        </div>
+        <div class="header-navlists">
+            <ul class="navlists clearfix">
+                <li class="navlist"><a href="index">首页</a></li>
+                <li class="navlist "><a href="visual-index">数据可视化分析</a></li>
+                <li class="navlist"><a href="view">视图缓存</a></li>
+                <li class="navlist "><a  href="visual-report"> HTML5报告 </a></li>
+                <li class="navlist active"><a href="#">开发者</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="menu-wrapper">
+        <ul class="catalog">
+            <!--如果要提示符的话，请注意data-toggle，data-placement[方向]和title的用法-->
+
+            <!--可由data-toggle设置其类型是点击展开/折叠相应列表类型，注意data-target-->
+            <li class="catalog-li" data-toggle="collapse" data-placement="top" data-target="#collapseOne">
+                <a href="#no1"><span>NO.1 插件引入</span></a>
+            </li>
+            <li class="catalog-li"  data-toggle="collapse"  data-target="#collapseTwo" title="">
+                <a href="#no2"><span>NO.2 数据格式</span></a>
+            </li>
+            <li class="catalog-li">
+                <a href="#no3"><span>NO.3 图形函数</span></a>
+            </li>
+            <li class="catalog-li">
+                <a href="#no4"><span>NO.4 图形示例</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="panel panel-default" id="no1">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    No.1 引入绘图插件及其依赖插件
+                </h3>
+            </div>
+            <div class="panel-body">
+              <pre class="prejs">
+                  &lt;script src="scripts/echarts.min.js"&gt;&lt;/script&gt;<br>
+                  &lt;script src="scripts/echarts.min.js"&gt;&lt;/script&gt;<br>
+                 &lt;script src="scripts/d3.min.js"&gt;&lt;/script&gt;<br>
+               &lt;script src="scripts/d3.layout.cloud.js"&gt;&lt;/script&gt;<br>
+                &lt;script src="scripts/DVL.js"&gt;&lt;/script&gt;<br>
+                  <!-- <span>或者按照自己系统的方式模块化的引入</span> -->
+            </pre>
+            </div>
+        </div>
+        <div class="panel panel-default" id="no2">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    NO.2 请求数据
+                </h3>
+            </div>
+            <div class="panel-body">
+                面板内容
+            </div>
+        </div>
+        <div class="panel panel-default"  id="no3">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    NO.3 可视化图形
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">饼图：DVL.pie($selector,data)</li>
+                    <li class="list-group-item">水平柱形图：DVL.horizChart($selector,data)</li>
+                    <li class="list-group-item">普通柱形图：DVL.basicChart($selector,data)</li>
+                    <li class="list-group-item">折线图：DVL.line($selector,data)</li>
+                    <li class="list-group-item">平行坐标图：DVL.parallel($selector,data)</li>
+                    <li class="list-group-item">时间区域线图：DVL.timeLine($selector,data)</li>
+                    <li class="list-group-item">地图：DVL.mapArea($selector,data)，使用地图绘制需要引入china.js</li>
+                    <li class="list-group-item">树图：DVL.tree($selector,data)</li>
+                    <li class="list-group-item">网络图：DVL.ford($selector,data)</li>
+                    <li class="list-group-item">标签云DVL.word($selector,data)</li>
+                    <li class="list-group-item">参数说明:$selector为id标识，注明宽高，id唯一
+                        data为需要可视化的数据。数据格式详见 sourceDataExample.js</li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel panel-default" id="no4">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    NO.4 示例
+                </h3>
+            </div>
+            <div class="panel-body">
+                <pre class="precss">
+                    #main{<br>
+                     &nbsp;width: 500px;<br>
+                     &nbsp;height: 500px;<br>
+                    }<br>
+                 </pre>
+                <pre class="prehtml">
+                     &lt;div id='main'&gt;&lt;/div&gt;
+                 </pre>
+                <pre class="prejs">
+                    //获取数据data后<br>
+                    var main = Document.getElementById('main');<br>
+                    DVL.horizChart(main, data);<br>
+                 </pre>
+                <div id="main" ></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
