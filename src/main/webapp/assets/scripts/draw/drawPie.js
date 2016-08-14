@@ -5,8 +5,8 @@ define(function(require, exports, module) {
 	
 	var drawPie = function(main, pieData){
 
-		//console.log(pieData);
-		var series = pieData.relations[pieData.objects][0].map(function(item, index){ return {name: pieData.property[index], value: item}  });
+		console.log(pieData);
+		//var series = pieData.relations[pieData.objects][0].map(function(item, index){ return {name: pieData.property[index], value: item}  });
 		//console.log(series);
 		var chart = echarts.init(main);
 		var option = {
@@ -41,11 +41,11 @@ define(function(require, exports, module) {
 	   	 	calculable : true,
 	    	series : [
 		        {
-		            name:pieData.objects,
+		            name:pieData.title,
 		            type:'pie',
 		            radius : '55%',
 		            center: ['50%', '60%'],
-		            data:series
+		            data:pieData.series
 		        }
 	    	]
 		};

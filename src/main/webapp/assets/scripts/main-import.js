@@ -3,8 +3,9 @@ define(function(require, exports, module){
 	var file = require('./ajaxfileupload');
 	var source = require('./sourcedataexample');
 	var changemenu = require('./menu-change');
-
-	var current = source.sourceData7;
+	var model = require('./model');
+	var c1 = source.sourceData1;
+	console.log(model.pieData(c1));
 	var session = window.sessionStorage;
 
 	session.setItem('api',null);

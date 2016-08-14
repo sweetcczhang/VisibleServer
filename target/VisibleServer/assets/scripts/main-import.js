@@ -3,14 +3,12 @@ define(function(require, exports, module){
 	var file = require('./ajaxfileupload');
 	var source = require('./sourcedataexample');
 	var changemenu = require('./menu-change');
-	var msgbox = require('./msgbox');
-
-	var current = source.sourceData7;
+    var msgbox = require('./msgbox');
 	var session = window.sessionStorage;
 
 	session.setItem('api',null);
 	session.setItem('fresh', false);
-	session.setItem('current',JSON.stringify(current));
+	//session.setItem('current',JSON.stringify(current));
 //	console.log(JSON.parse(session.getItem('current')));
 			//数据源各选项设置
 		$(function() {
@@ -24,7 +22,8 @@ define(function(require, exports, module){
 				var api = '../user/getallcache';
 				var userid = {userid: 1};
 				var session = window.sessionStorage;
-				session.setItem('userid', 1);
+
+				session.setItem('userid',1);
 				$.ajax({
 					type:'get',
 					url: api,
@@ -58,9 +57,9 @@ define(function(require, exports, module){
 	 				var s = data.DATA[i];
 	 				var op = '<tr><td>'+ s.id + '</td><td>'+s.title+'</td><td>'+s.relationtype+'</td><td><span class="td-cho" id="'+s.id+'">选择</span>|<span class="td-del" id="'+s.id+'">删除</td></tr>';
 	 				tr.push(op);
-					if(typeof s.relations != 'object') {
-						s.relations = JSON.parse(s.relations);
-					}
+                    if(typeof s.relations != 'object'){
+                        s.relations = JSON.parse(s.relations);
+                    }
 
 			 	}
 				var session = window.sessionStorage;
@@ -92,29 +91,24 @@ define(function(require, exports, module){
 			});
 			$('.from-in').on('click','.td-del', function() {
 				var id = $(this).attr('id');
-				var api = '/VisibleServer/user/deleteUserCache';
+				var api = '../user/deleteUserCache';
 				$.ajax({
 					type:'get',
 					url: api,
 					async: true,
 					data: {cacheid: id, userid: 1},
 					dataType:"json",
-					//jsonp: 'callback',
+					jsonp: 'callback',
 					crossDomain:true,
 					success:function (data) {
 						msgbox.promp('删除成功');
-						loadData();
+                        loadData();
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 						console.log(XMLHttpRequest.status);
 						creatTable(null);
 					}
 				});
-				var session = window.sessionStorage;
-				var userData = JSON.parse(session.getItem('userData'));
-				console.log(userData);
-				console.log(userData.DATA[index]);
-				tomaintable(userData.DATA[index]);
 			});
 			//import 数据来源选择
 			$('.import-choose').on('click','li', function(){
@@ -156,7 +150,7 @@ define(function(require, exports, module){
 					'desc': function() {
 						var d = ' <div class="form-group">\
 									    <label for="name">描述</label>\
-									    <textarea class=" descirbe form-control" rows="3"></textarea>\
+									    <textarea class="desc-area form-control" rows="3" value="数据描述"></textarea>\
 									 </div>';
 						return d;
 					},
@@ -195,7 +189,7 @@ define(function(require, exports, module){
 					$('.form-out-div').html(fromgroup.api() + fromgroup.fresh());
 				}
 				if(v ==='excel' || v ==='txt') {
-					dv = fromgroup.fileload()+ fromgroup.relty() + fromgroup.title() + fromgroup.desc();
+					dv = fromgroup.fileload()+ fromgroup.relty() + fromgroup.title()+fromgroup.desc();
 					$('.form-out-div').empty().append(dv);
 				}
 			});
@@ -233,7 +227,7 @@ define(function(require, exports, module){
 						var oj = {};
 						oj.type = sel;
 						oj.title = $('.title').val();
-						oj.desc = $('.describe').val();
+						oj.describe = $('.desc-area').val();
 						oj.fileAddr = $('.fileload').val();
 						oj.filename = $('.fileload').attr('name');
 						oj.fileID = $('.fileload').attr('id');
@@ -278,11 +272,11 @@ define(function(require, exports, module){
 			}//sendAPI end;
 			function sendFILE(obj, fn) {
 				console.log(obj);
-				var url = 'upload_file?userid=' + obj.userid + '&title='+obj.title +'&relationtype='+parseInt(obj.relationtype,10)+'&desc='+obj.desc;
+				var url = 'upload_file?userid='+obj.userid+'&title='+obj.title+"&desc="+obj.describe+"&relationtype="+parseInt(obj.relationtype, 10);
 				var fileID = obj.fileID;
 				var filename = obj.filename;
 				var fileload = obj.fileload;
-				msgbox.promp('正在导入...');
+				msgbox.promp(' 正在导入...');
 				file.ajaxFileUpload({
 					url : url, // 用于文件上传的服务器端请求地址
 					type : 'post',
@@ -293,12 +287,12 @@ define(function(require, exports, module){
 					data : '',
 					success : function(data, status) // 服务器成功响应处理函数
 					{
-						msgbox.promp(' 导入成功');
-						console.log(data);
+
+						//console.log(data);
 						var regx=/(\{.*})/;
 						var data = data.match(regx)[0];
 						data = JSON.parse(data); 
-
+                        console.log(data);
 						if(typeof fn ==='function'){
 							fn(data.DATA);
 						}

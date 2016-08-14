@@ -1,20 +1,5 @@
 define(function(require,exports,module){
 	var match = require('./data-match');
-
-	var dataobj={
-				'title': '某地区蒸发量',
-				'objects': ['蒸发量'],
-				'property': ['8月', '9月', '10月', '11月', '12月'],
-				'relations': {
-					'蒸发量': [	
-						{'name': '8月', 'value': 56.2 },
-						{'name': '9月', 'value': 32.3 },
-						{'name': '10月', 'value': 20.3 },
-						{'name': '11月', 'value': 20.9 },
-						{'name': '12月', 'value': 25.1}
-					]
-				}
-			};
 	var model = {
 		'change': function(data, index) {
 			var $this = this;
@@ -99,35 +84,33 @@ define(function(require,exports,module){
 				}//if(index)
 			}//if(data)
 		},
-		'pieData': function(data){//返回数组
-			console.log(data);
-			var array = [];
-
+		'pieData': function(data){
+			/*返回饼图数据格式
+			{
+				title:'',
+				property:[],
+				series:[{name:'',value:''}],
+				desc:''
+				]
+			}
+			*/
+			//console.log(data);
+			var dobj = {};
 			if(data.objects.length > 0){
-				var dataobj = {};
+				
 				var i;
 				var oj = data.objects;
+				var series = [];
 				for(i = 0; i < oj.length; i++) {
-					var dataobj = {};
-					dataobj.title = data.title;
-					dataobj.objects = oj[i];
-					dataobj.property = (function(property) {
-						if(property.length > 1) {
-							return property[i];
-						} else {
-							return property[0];
-						}
-					}(data.property));
-					dataobj.relations = {};
-					dataobj.relations[oj[i]] = data.relations[oj[i]];
-					array.push(dataobj);
+					var name = oj[i];
+					series.push({name: name, vlaue: data.relations[name][0][0]});
 				}
-			} 
-			if(!data) {
-				array.push(dataobj);
+				dobj.title = data.title;
+				dobj.property = data.property[0];
+				dobj.desc = data.desc;
+				dobj.series = series;
 			}
-
-			return array;
+			return dobj;
 		},
 		'comLengData': function(data) {
 			

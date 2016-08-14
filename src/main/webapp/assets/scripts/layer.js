@@ -14,7 +14,15 @@ define(function(require, exports, module) {
 		drawMapArea = require('./draw/drawMap-area'),
 		drawWord = require('./draw/drawWord'),
 		drawRadar = require('./draw/drawRadar');
-	
+
+	var source = require('./sourcedataexample');
+	var model = require('./model');
+	var c1 = source.sourceData1;
+	console.log(model.pieData(c1));
+	// var html='<div class="view-area-box" id="main" style = "height: 200px;"></div>';
+	// $('body').html(html);
+	// var main = document.getElementById('main');
+	// drawPie(main, model.pieData(c1));
 
 	var layer = function(selector, data, index, fresh) {
 		$selector = $(selector);
