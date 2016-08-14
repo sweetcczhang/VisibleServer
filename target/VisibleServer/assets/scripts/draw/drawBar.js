@@ -5,8 +5,9 @@ define(function(require, exports, module) {
 
 	var drawBar = function(main,barData) {
 		console.log(barData);
-	var series = barData.objects.map(function(item,index) {
-	    	return {name: item, type:'bar', data:barData.relations[item][0]};
+	var series = barData.series.map(function(item,index) {
+		item.type = 'bar';
+	    	return item;
 	    });
 	var chart = echarts.init(main);
 	var option = {

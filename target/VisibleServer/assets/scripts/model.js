@@ -1,6 +1,6 @@
 define(function(require,exports,module){
 	var match = require('./data-match');
-	require('./until/Underscore.js')
+    require('./util/underscore.js');
 	var model = {
 		'change': function(data, index) {
 			var $this = this;
@@ -12,60 +12,34 @@ define(function(require,exports,module){
 				if(index !== 0 && match(data, index)) {
 					
 		// relationtype 1 yiwei 2 2wei  3 duowei 4 shijian 5 cengci 6 wangluo 7 map 8 zi
-		// index 1 Bar  2: Line 3: Pie 4: Timeline 5 Parallel 6: Tree 7: Ford 8: map 9:Word
-						
-						if(index === 1 || index === 2 ) {
+		// index 1 pie  2: Line 3: basicbar 4: Timeline 5 Parallel 6: Tree 7: Ford 8: map 9:Word 10 Horizbar
+						if(index ===1 ) {
+							switch(relationtype){
+								case 1:
+									return $this.PieData(data) ;
+									break;
+								case 2:
+								case 4:
+								case 7:
+								case 8:
+									return $this.comToPie(data) ;
+									break;
+							}
+						}
+						if(index === 2 || index === 3 ||index === 4 || index === 10 ) {
 								switch(relationtype){
-									case 1: 
+									case 1:
+											return$this.pieToCom(data);
+											break;
 									case 2:
-											return $this.comData(data) ;
-											break;
 									case 4:
-											return $this.timeData(data);
-											break;
-									
 									case 7:
-											return $this.map2Com(data);
+									case 8:
+											return $this.comLData(data);
 											break;
-									case 8:break;
-									
 								}
 						}
 
-						if (index === 3) {
-							switch(relationtype){
-									case 1: 
-									case 2:
-											return $this.pieData(data) ;
-											break;
-									case 4:
-											return $this.pieData($this.timeData(data));
-											break;
-									
-									case 7:
-											return $this.pieData($this.map2Com(data));
-											break;
-									case 8:break;
-									
-								}
-						}
-						if(index ===4) {
-							switch(relationtype){
-									case 1: 
-									case 2:
-											return $this.comData(data) ;
-											break;
-									case 4:
-											return $this.timeData(data);
-											break;
-									
-									case 7:
-											return $this.map2Com(data);
-											break;
-									case 8:break;
-									
-								}
-						}
 						if(index === 5){
 							return $this.comData(data);
 						}
@@ -98,13 +72,12 @@ define(function(require,exports,module){
 			//console.log(data);
 			var dobj = {};
 			if(data.objects.length > 0){
-				
 				var i;
 				var oj = data.objects;
 				var series = [];
 				for(i = 0; i < oj.length; i++) {
 					var name = oj[i];
-					series.push({name: name, value: data.relations[name][0][0]});
+					series.push({name: name, vlaue: data.relations[name][0][0]});
 				}
 				dobj.title = data.title;
 				dobj.property = data.property[0];
@@ -114,26 +87,89 @@ define(function(require,exports,module){
 			return dobj;
 		},
 		'pieToCom': function(data) {
-
+			if(data) {
+				var oj = data.objects;
+				var series = [];
+				for(var i = 0; i < oj.length; i++) {
+					var name = oj[i];
+					series.push(data.relations[name][0][0]);
+				}
+				var obj = {
+					title: data.title,
+					describe: data.describe,
+					objects: data.title,
+					series: [{name:data.title, data: series}],
+					property: data.objects
+				}
+				return obj;
+			}
 		},
 		'comLData': function(data) {
-			//二维数据格式{
-			// title:,
-			// property:,
-			// series:[{
-			// name:
-			// data:[]}]
+			//{
+			// title:'',
+			// property:[],
+			// describe: '',
+			// objects:[],
+			// series:[{name:object, data:[]}]
+			// }
 			//
 			// }
+			var propertyArr = [];
+			var series = [];
+			var property;
+			for(var i = 0;i<data.objects.length; i++) {
+				var name = data.objects[i];
+				var arr = _.unzip(data.relations[name]);
+                propertyArr.push(arr[0]);
+				series.push({name: name, data: arr[1]});
+			}
+			if(propertyArr.length > 0 && propertyArr[0].length !== propertyArr[1].length){
+				var objArr=[];
+				for(var i=0;i<propertyArr.length; i++){
+					var obj ={
+						title: data.title,
+						objects:data.objects.slice(i,i+1),
+						describe: data.describe,
+						series: series.slice(i,i+1),
+						property: propertyArr[i]
+					};
+					objArr.push(obj);
+				}
+				return objArr;//f返回对象数组
+			}else {
+				var obj ={
+					title: data.title,
+					describe: data.describe,
+					objects: data.objects,
+					series: series,
+					property: propertyArr[0]
+				};
+				return obj; //对象
+			}
+
+			//console.log(data);
+			
+		},
+		'comToPie': function(data) {
 			if(data) {
-				for(var i = 0; i<data.objects.length;i++) {
+				var objArr = [];
+				for(var i =0;i<data.objects.length;i++) {
 					var name = data.objects[i];
 					var arr = _.unzip(data.relations[name]);
-					console.log(arr);
+					var series = data.relations[name].map(function(item, index) {
+						//console.log(item, index);
+						return {name: item[0], value: item[1]};
+					});
+					var obj = {
+						title: data.title,
+						property: arr[0],
+						describe: data.describe,
+						series: series
+					}
+					objArr.push(obj);
 				}
+				return objArr;
 			}
-			console.log(data);
-			
 		},
 		'comData': function(data) {//data.property.length === 1 返回对象 2 返回数组
 			console.log(data);
@@ -166,33 +202,7 @@ define(function(require,exports,module){
 			}
 			
 		},
-		'timeData': function(data) {
-			if(parseInt(data.relationtype) == 4) {
-				var dj = {};
-				dj.describe = data.describe;
-				dj.title = data.title;
-				dj.objects = data.objects;
-				dj.relationtype = data.relationtype;
-				dj.relations = {};
-				dj. property = [];
-				var subproperty = {};
-				for( var it in data.relations) {
-					
-					var value = [];
-					data.relations[it].map(function(item, index){
-						subproperty[item[0]] = item[0];
-						value.push(item[1]);
-					});
-					dj.relations[it] = [];
-					dj.relations[it].push(value);
-				}
-				for( var i in subproperty){
-					dj.property.push(i);
-				}
-				console.log(dj);
-				return dj;
-			}
-		},
+
 		'treeData': function(data) {
 			var dataobj={
 				'name':'如何学习D3',

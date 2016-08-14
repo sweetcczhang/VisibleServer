@@ -4,6 +4,7 @@ define(function(require, exports, module) {
 	var model = require('./model'),
 		drawLine = require('./draw/drawLine'),
 		drawBar = require('./draw/drawBar'),
+		drawHorizBar = require('./draw/drawHorizBar'),
 		drawPie = require('./draw/drawPie'),
 		drawTree = require('./draw/drawTree'),
 		drawFord = require('./draw/drawFord'),
@@ -17,12 +18,12 @@ define(function(require, exports, module) {
 
 	var source = require('./sourcedataexample');
 	var model = require('./model');
-	var c1 = source.sourceData2;
+	var c1 = source.sourceData4;
 	console.log(model.comLData(c1));
-	// var html='<div class="view-area-box" id="main" style = "height: 200px;"></div>';
-	// $('body').html(html);
-	// var main = document.getElementById('main');
-	// drawPie(main, model.pieData(c1));
+	var html='<div class="view-area-box" id="main" style = "height: 200px;"></div>';
+	$('body').html(html);
+	var main = document.getElementById('main');
+	drawTimeLine(main, model.comLData(c1));
 
 	var layer = function(selector, data, index, fresh) {
 		$selector = $(selector);
