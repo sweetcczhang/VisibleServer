@@ -6,16 +6,13 @@ define(function(require, exports, module) {
 	
 	//时间线
 	var drawTimeLineD = function drawTimeline(main, timeData){
-			var series = timeData.objects.map(function(item,index) {
-		    	return {
-		    			name: item, 
-		    			type:'line', 
-		    			smooth: true, 
-		    			symbol: 'none', 
-		    			sampling: 'average',//折线图在数据量远大于像素点时候的降采样策略
-		    			data:timeData.relations[item][0]
-		    		};
-		    });
+		var series = timeData.series.map(function(item,index) {
+			item.type = 'line';
+			item.smooth = true;
+			item.symbol = 'none';
+			item.sampling = 'average';//折线图在数据量远大于像素点时候的降采样策略
+			return item;
+		});
 			var option = {
 			    tooltip: {
 			        trigger: 'axis'

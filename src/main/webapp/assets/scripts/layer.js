@@ -17,13 +17,6 @@ define(function(require, exports, module) {
 		drawRadar = require('./draw/drawRadar');
 
 	var source = require('./sourcedataexample');
-	var model = require('./model');
-	var c1 = source.sourceData4;
-	console.log(model.comLData(c1));
-	var html='<div class="view-area-box" id="main" style = "height: 200px;"></div>';
-	$('body').html(html);
-	var main = document.getElementById('main');
-	drawTimeLine(main, model.comLData(c1));
 
 	var layer = function(selector, data, index, fresh) {
 		$selector = $(selector);
@@ -59,100 +52,130 @@ define(function(require, exports, module) {
 		}
 	};
 	function setBar($selector, data, fresh){
-		var data1 = model.change(data , 1);
-		if( data.property.length === 1){
-				var html='<div class="view-area-box" id="main"></div>';
-				$selector.html(html);
-				var main = document.getElementById('main');
-				drawBar(main, data1);
-		}else {
-			
-			 //对象数组
-				console.log(data1);
-				
-				var frag='<ul class="datalists">';
-				for(var i = 0; i < data1.length; i++){
-					frag+='<li class="datalist"  data-index="'+ i +'">'+ data1[i].objects[0] +'</li>';
-				}
-				frag+='</ul>';
-				var html='<div class="dataproperty">' + frag +'</div>\
+		var bardata = model.change(data , 3);
+		if( bardata instanceof  Array){
+			//对象数组
+			var frag='<ul class="datalists">';
+			for(var i = 0; i < bardata.length; i++){
+				frag+='<li class="datalist"  data-index="'+ i +'">'+ bardata[i].objects[0] +'</li>';
+			}
+			frag+='</ul>';
+			var html='<div class="dataproperty">' + frag +'</div>\
 						<div class="view-area-box" id="main"></div>';
-				$selector.html(html);
-				$selector.on("click", "li.datalist", function(){
-					$(this).addClass("active").siblings().removeClass("active");
-					var index = $(this).data('index');
-					var main = document.getElementById('main');
+			$selector.html(html);
+			$selector.on("click", "li.datalist", function(){
+				$(this).addClass("active").siblings().removeClass("active");
+				var index = $(this).data('index');
+				var main = document.getElementById('main');
 
-					var barData = data1[index];
-					drawBar(main, barData);
-					
-				});
-				$selector.find("li.datalist").eq(0).trigger("click");
+				var barData = bardata[index];
+				drawBar(main, barData);
+
+			});
+			$selector.find("li.datalist").eq(0).trigger("click");
+
+		}else {
+			var html='<div class="view-area-box" id="main"></div>';
+			$selector.html(html);
+			var main = document.getElementById('main');
+			drawBar(main, bardata);
 		}	
 	}
-
-	function setLine($selector, data, fresh){
-		var data1 = model.change(data, 2);
-		if(data.property.length === 1){
-			
-				
-				var html='<div class="view-area-box" id="main"></div>';
-				$selector.html(html);
-				var main = document.getElementById('main');
-				drawLine(main, data1);
-		}else {
-			
-			 
-				console.log(data1);
-				
-				var frag='<ul class="datalists">';
-				for(var i = 0; i < data1.length; i++){
-					frag+='<li class="datalist"  data-index="'+ i +'">'+ data1[i].objects[0] +'</li>';
-				}
-				frag+='</ul>';
-				var html='<div class="dataproperty">' + frag +'</div>\
+	function setHorizBar() {
+		var bardata = model.change(data , 10);
+		if( bardata instanceof  Array){
+			//对象数组
+			var frag='<ul class="datalists">';
+			for(var i = 0; i < bardata.length; i++){
+				frag+='<li class="datalist"  data-index="'+ i +'">'+ bardata[i].objects[0] +'</li>';
+			}
+			frag+='</ul>';
+			var html='<div class="dataproperty">' + frag +'</div>\
 						<div class="view-area-box" id="main"></div>';
-				$selector.html(html);
-				$selector.on("click", "li.datalist", function(){
-					$(this).addClass("active").siblings().removeClass("active");
-					var index = $(this).data('index');
-					var main = document.getElementById('main');
+			$selector.html(html);
+			$selector.on("click", "li.datalist", function(){
+				$(this).addClass("active").siblings().removeClass("active");
+				var index = $(this).data('index');
+				var main = document.getElementById('main');
 
-					var lineData = data1[index];
-					drawLine(main, lineData);
-				});
-				$selector.find("li.datalist").eq(0).trigger("click");
+				var barData = bardata[index];
+				drawHorizBar(main, barData);
+
+			});
+			$selector.find("li.datalist").eq(0).trigger("click");
+
+		}else {
+			var html='<div class="view-area-box" id="main"></div>';
+			$selector.html(html);
+			var main = document.getElementById('main');
+			drawHorizBar(main, bardata);
+		}
+	}
+	function setLine($selector, data, fresh){
+		var linedata = model.change(data, 2);
+		if( linedata instanceof  Array){
+			//对象数组
+			var frag='<ul class="datalists">';
+			for(var i = 0; i < linedata.length; i++){
+				frag+='<li class="datalist"  data-index="'+ i +'">'+ linedata[i].objects[0] +'</li>';
+			}
+			frag+='</ul>';
+			var html='<div class="dataproperty">' + frag +'</div>\
+						<div class="view-area-box" id="main"></div>';
+			$selector.html(html);
+			$selector.on("click", "li.datalist", function(){
+				$(this).addClass("active").siblings().removeClass("active");
+				var index = $(this).data('index');
+				var main = document.getElementById('main');
+
+				var lineData = linedata[index];
+				drawBar(main, lineData);
+
+			});
+			$selector.find("li.datalist").eq(0).trigger("click");
+
+		}else {
+			var html='<div class="view-area-box" id="main"></div>';
+			$selector.html(html);
+			var main = document.getElementById('main');
+			drawBar(main, linedata);
 		}
 	}
 	function setPie($selector, data, fresh) {
-		var pieData = model.change(data, 3);
+		var pieData = model.change(data, 1);
 		console.log(pieData);
-		var frag='<ul class="datalists">';
-		for(var i = 0; i < pieData.length; i++){
-				frag+='<li class="datalist"  data-index="'+ i +'">'+ pieData[i].objects +'</li>';
-		}
-		frag+='</ul>';
-		var html='<div class="dataproperty">' + frag +'</div>\
+		if( pieData instanceof Array){
+			var frag='<ul class="datalists">';
+			for(var i = 0; i < pieData.length; i++){
+				frag+='<li class="datalist"  data-index="'+ i +'">'+ pieData[i].objects[0] +'</li>';
+			}
+			frag+='</ul>';
+			var html='<div class="dataproperty">' + frag +'</div>\
 				<div class="view-area-box" id="main"></div>';
-		$selector.html(html);
-		$selector.on("click", "li.datalist", function(){
-			$(this).addClass("active").siblings().removeClass("active");
-			var index = $(this).data('index');
+			$selector.html(html);
+			$selector.on("click", "li.datalist", function(){
+				$(this).addClass("active").siblings().removeClass("active");
+				var index = $(this).data('index');
+				var main = document.getElementById('main');
+				var pie = pieData[index];
+				drawPie(main, pie);
+
+			});
+			$selector.find("li.datalist").eq(0).trigger("click");
+		} else {
+			var html='<div class="view-area-box" id="main"></div>';
+			$selector.html(html);
 			var main = document.getElementById('main');
-			var pie = pieData[index];
-			drawPie(main, pie);
-					
-		});
-		$selector.find("li.datalist").eq(0).trigger("click");
+			drawPie(main, pieData);
+		}
 	}
 	function setTimeline($selector, data, fresh){
 		var tlData = model.change(data, 4);//对象数组
 				console.log(tlData);
 				var html='<div class="view-area-box" id="main"></div>';
-					$selector.html(html);
-					var main = document.getElementById('main');
+				$selector.html(html);
+				var main = document.getElementById('main');
 				if(fresh == 'false'){
-					
 					drawTimeLine(main, tlData);
 				}else{
 					drawTimeLineD(main, tlData);

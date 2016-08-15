@@ -55,28 +55,31 @@ define(function(require, exports, module){
 				/* Act on the event */
 				current = JSON.parse(session.getItem('current'));
 				console.log(current);
-				var api = 'upload_data';
-				type = current.type;
-				$.ajax({
-			 		type:'post',
-			 		url: api,
-			 		async: true,
-			 		data: {'data': JSON.stringify(current), 'id':1, 'type': type},
-			 		dataType:"json",
-			 		jsonp: 'callback',
-			 		crossDomain:true,
-			 		success:function (data) {
-			 			console.log(data);
-			 			msg.promp('视图缓存成功');
-			 			setTimeout(function(){
-			 				window.location.href='view';
-			 			},2000);
-			 		},
-			 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			 			console.log(XMLHttpRequest.status);
-			 			msg.promp('视图缓存出现问题，请重试');
-		            }
-			 	});//ajax end
+				var local = window.localStorage;
+				var layercache = local.getItem('layercache') || [];
+				layercache.push(current);
+				// var api = 'upload_data';
+				// type = current.type;
+				// $.ajax({
+			 	// 	type:'post',
+			 	// 	url: api,
+			 	// 	async: true,
+			 	// 	data: {'data': JSON.stringify(current), 'id':1, 'type': type},
+			 	// 	dataType:"json",
+			 	// 	jsonp: 'callback',
+			 	// 	crossDomain:true,
+			 	// 	success:function (data) {
+			 	// 		console.log(data);
+			 	// 		msg.promp('视图缓存成功');
+			 	// 		setTimeout(function(){
+			 	// 			window.location.href='view';
+			 	// 		},2000);
+			 	// 	},
+			 	// 	error: function(XMLHttpRequest, textStatus, errorThrown) {
+			 	// 		console.log(XMLHttpRequest.status);
+			 	// 		msg.promp('视图缓存出现问题，请重试');
+		         //    }
+			 	// });//ajax end
 				
 				
 			});// click end

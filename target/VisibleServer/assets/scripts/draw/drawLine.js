@@ -5,9 +5,11 @@ define(function(require, exports, module) {
 	
 	var drawLine = function(main,lineData) {
 		console.log(lineData);
-	var series = lineData.objects.map(function(item,index) {
-	    	return {name: item, type:'line', smooth: true, data:lineData.relations[item][0]};
-	    });
+		var series = barData.series.map(function(item,index) {
+			item.type = 'line';
+			item.smooth = true;
+			return item;
+		});
 	var chart = echarts.init(main);
 	var option = {
 	    title : {

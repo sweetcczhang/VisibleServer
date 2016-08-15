@@ -164,6 +164,7 @@ define(function(require,exports,module){
 						title: data.title,
 						property: arr[0],
 						describe: data.describe,
+						objects: [name],
 						series: series
 					}
 					objArr.push(obj);
