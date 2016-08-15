@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 
 		// relationtype 数据类型，index 布局类型
 		// relationtype 1 yiwei 2 2wei  3 duowei 4 shijian 5 cengci 6 wangluo 7 map 8 zi
-		// index 1 Bar  2: Line 3: Pie 4: Timeline 5 Parallel 6: Tree 7: Ford 8: map 9:Word
+		// index 1 pie  2: Line 3: bar 4: Timeline 5 Parallel 6: Tree 7: Ford 8: map 9:Word 10 horizBar
 		relationtype = parseInt(data.relationtype);
 		index = parseInt(index);
 		//console.log(relationtype+ '' +index);
@@ -40,7 +40,7 @@ define(function(require, exports, module) {
 			}
 			
 		}
-		if(index === 8 || relationtype === 7) { // map
+		if(index === 8 ) { // map
 			if(relationtype === 7 && index === 8) return true;
 			else {
 				createPop();
