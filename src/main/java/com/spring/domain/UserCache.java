@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * Created by cuidanyang on 16/8/12.
  */
-@Entity()
+@Entity
 public class UserCache {
     @Id
     @Column(name = "user_cache_id")

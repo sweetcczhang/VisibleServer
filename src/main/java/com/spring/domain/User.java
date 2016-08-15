@@ -2,6 +2,7 @@ package com.spring.domain;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,8 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<UserCache> cacheSet = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    private List<VisibleReport> visibleReports = new LinkedList<>();
 
     public Integer getId() {
         return id;
@@ -51,6 +54,16 @@ public class User {
     public void setCacheSet(Set<UserCache> cacheSet) {
         this.cacheSet = cacheSet;
     }
+
+    public List<VisibleReport> getVisibleReports() {
+        return visibleReports;
+    }
+
+    public void setVisibleReports(List<VisibleReport> visibleReports) {
+        this.visibleReports = visibleReports;
+    }
+
+
 }
 
 

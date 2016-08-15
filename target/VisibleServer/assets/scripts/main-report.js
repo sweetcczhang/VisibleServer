@@ -1,5 +1,6 @@
 define(function(require, exports, module){
 	require('../css/visual-report.css');
+	require('')
 	$(function() {
 		var edit = '<div class="edit-chart" id="ID">'
 			+'<div class="chart-title">数据图表标题<div class="chart-desicon"></div></div>'
