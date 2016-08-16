@@ -81,7 +81,7 @@ define(function(require, exports, module) {
 			drawBar(main, bardata);
 		}	
 	}
-	function setHorizBar() {
+	function setHorizBar($selector, data, fresh) {
 		var bardata = model.change(data , 10);
 		if( bardata instanceof  Array){
 			//对象数组

@@ -56,7 +56,7 @@ define(function(require, exports, module){
 				current = JSON.parse(session.getItem('current'));
 				console.log(current);
 				var local = window.localStorage;
-				var layercache = local.getItem('layercache') || [];
+				var layercache = JSON.parse(local.getItem('layercache')) || [];
 				layercache.push(current);
 				local.setItem('layercache', JSON.stringify(layercache));
 				window.location.href='view';

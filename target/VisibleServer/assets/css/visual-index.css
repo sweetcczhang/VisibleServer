@@ -573,7 +573,7 @@ body {
     cursor: pointer;
 }
 .edit-popup .popup-con .view-cache-box{
-
+  display: none;
 }
 .edit-popup .popup-con .data-cache-box {
   display: none;
@@ -625,4 +625,7 @@ body {
   color: #f0f0f0;
   text-decoration: underline;
   cursor: pointer;
+}
+.view-area-box {
+  height: 300px;
 }

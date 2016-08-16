@@ -153,15 +153,15 @@
 					</div> -->
 					<div class="report-bt">
 						<div class=" btn btn-default button-publish">发布</div>
-						<div class=" btn btn-default button-report-save">暂存</div>
+						<!--<div class=" btn btn-default button-report-save">暂存</div>-->
 					</div>
 					<!-- <div class="report-area"> -->
 						<div class="report-edit">
-							<div class="edit-des">
+							<div class="edit-des" id="edit-des">
 								<div class="des-title" contenteditable="true">数据报告标题（点击修改）</div>
 								<textarea name="" class="des-con"></textarea>
 							</div>
-							<div class="edit-chart" id="1111">
+							<div class="edit-chart" id="edit-chart1">
 								<div class="chart-title">数据图表标题<div class="chart-desicon"></div></div>
 								<div class="chart-con">
 									<div class="chart-con-add">+</div>
@@ -186,30 +186,27 @@
 		<div class="popup-bg"></div>
 		<div class="edit-popup">
 			
-			<div class="popup-tl">自定义视图 <!--<span class="goback">返回上一步</span>--> <div class="popup-cl"></div></div>
+			<div class="popup-tl">自定义视图 <span class="goback">返回上一步</span> <div class="popup-cl"></div></div>
 			<div class="popup-con">
-				<!--<div class="cache-box">
+				<div class="cache-box">
 					<div class="data-cache" data-co="1">从已导入的数据列表获取</div>
 					<div class="view-cache" data-co="2">从已缓存的本地视图获取</div>
-				</div>-->
+				</div>
 			<!-- view cache box -->
 				<div class = "view-cache-box">
 					<div class="form-group">
 						<label for="" class=" col-sm-3 control-label">已缓存视图</label>
-						<select name="" id="" class="form-t col-sm-7 ">
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
+						<select name="" id="view-select" class="form-t col-sm-7 ">
+
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-3 control-label">视图标题</label>
-						<input type="text" class="form-t col-sm-7">
+						<input type="text" id="view-title" class="form-t col-sm-7">
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-3 control-label">视图背景描述</label>
-						<textarea name="" id="" class="form-t col-sm-7" rows="3"></textarea>
+						<textarea name="" id="view-desc" class="form-t col-sm-7" rows="3"></textarea>
 					</div>
 				</div>
 			<!-- view cache box -->
@@ -217,17 +214,15 @@
 				<div class = "data-cache-box">
 					<div class="form-group">
 						<label for="" class=" col-sm-3 control-label">已导入数据</label>
-						<select name="" id="" class="form-t col-sm-7 ">
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
+						<select name="" id="data-select" class="form-t col-sm-7 ">
+
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="" class=" col-sm-3 control-label">图形呈现方式</label>
-						<select name="" id="" class="form-t col-sm-7 ">
-							<option value="1">饼状图</option>
+						<select name="data-layer" id="layer-select" class="form-t col-sm-7 ">
+                            <option value="-1">请选择图形呈现类型</option>
+                            <option value="1">饼状图</option>
 							<option value="2">折线图</option>
 							<option value="10">横向柱状图</option>
 							<option value="3">纵向柱状图</option>
@@ -241,11 +236,11 @@
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-3 control-label">视图标题</label>
-						<input type="text" class="form-t col-sm-7">
+						<input type="text" id="data-title" class="form-t col-sm-7">
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-3 control-label">视图背景描述</label>
-						<textarea name="" id="" class="form-t col-sm-7" rows="3"></textarea>
+						<textarea name="" id="data-desc" class="form-t col-sm-7" rows="3"></textarea>
 					</div>
 				</div>
 			<!-- data cache box -->

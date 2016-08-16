@@ -87,6 +87,14 @@ public class CommonUrlController {
 		return suffix + "visual-html5";
 	}
 
+	@RequestMapping("reportPC")
+	public String reportPC(HttpServletRequest request) {
+		return suffix + "report-pc";
+	}
+	@RequestMapping("reportPhone")
+	public String reportPhone(HttpServletRequest request) {
+		return suffix + "report-phone";
+	}
 
 
 	@RequestMapping("upload_file")

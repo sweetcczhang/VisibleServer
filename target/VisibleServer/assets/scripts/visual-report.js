@@ -6,4 +6,86 @@ define(function(require, exports, module) {
 		require('../css/visual-report.css');
 		
 		require('bootstrap');
+		var msgbox = require('./msgbox.js');
+		$(function() {
+			loadreport();
+			$('.table-container').on('click','.td-cho', function() {
+				var id = $(this).attr('id');
+
+				var session = window.sessionStorage;
+				var userData = JSON.parse(session.getItem('userData'));
+				console.log(userData);
+				console.log(id);
+
+			});
+			$('.table-container').on('click','.td-del', function() {
+				var id = $(this).attr('id');
+				var api = '../user/deletereport';
+				$.ajax({
+					type:'get',
+					url: api,
+					async: true,
+					data: {reportid: id},
+					dataType:"json",
+					jsonp: 'callback',
+					crossDomain:true,
+					success:function (data) {
+						msgbox.promp('删除成功');
+						loadreport();
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log(XMLHttpRequest.status);
+						//creatTable(null);
+					}
+				});
+			});
+		})
+		function loadreport(){
+			var api = '../user/getallreport';
+			var session = window.sessionStorage;
+			userid = parseInt(session.getItem('userid'))|| 1;
+			$.ajax({
+				type:'get',
+				url: api,
+				async: true,
+				data: {userid: userid },
+				dataType:"json",
+				jsonp: 'callback',
+				crossDomain:true,
+				success:function (data) {
+					console.log(data);
+					reportTable(data);
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					console.log(XMLHttpRequest.status);
+				}
+			});
+		}
+		function reportTable(data) {
+			var tr = [];
+			if(!data) return;
+			for( var i = 0; i < data.DATA.length; i++) {
+				var s = data.DATA[i];
+				var report = JSON.parse(s.reportData) || {};
+				var title = report.desc.title || 'kong';
+				var id = s.id;
+				var op = '<tr><td>'+ s.id + '</td><td>'+title+'</td><td><span class="td-cho" id="'+s.id+'">选择</span>|<span class="td-del" id="'+s.id+'">删除</td></tr>';
+				tr.push(op);
+			}
+			// var session = window.sessionStorage;
+			// session.setItem('userData',JSON.stringify(data));
+			var table = '<table class="table table-bordered  table-striped">'+
+				'<thead>'+
+				' <tr>'+
+				'<th>报告标识</th>'+
+				'<th>报告标题</th>'+
+				'<th>数据操作</th>'+
+				'</tr>'+
+				'</thead>'+
+				'<tbody>'
+				+ tr.join('') +
+				'</tbody>'+
+				'</table>';
+			$('.table-container').html(table);
+		}
 });

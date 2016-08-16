@@ -18,7 +18,7 @@ define(function(require, exports, module) {
 
 	var source = require('./sourcedataexample');
 
-	var layer = function(selector, data, index, fresh) {
+	var drawDVL = function(selector, data, index, fresh) {
 		$selector = $(selector);
 		var session = window.sessionStorage;
 		fresh = session.getItem('fresh') || false;
@@ -53,6 +53,8 @@ define(function(require, exports, module) {
 	};
 	function setBar($selector, data, fresh){
 		var bardata = model.change(data , 3);
+		var id = data.viewId || 'main';
+		//debugger;
 		if( bardata instanceof  Array){
 			//对象数组
 			var frag='<ul class="datalists">';
@@ -61,12 +63,12 @@ define(function(require, exports, module) {
 			}
 			frag+='</ul>';
 			var html='<div class="dataproperty">' + frag +'</div>\
-						<div class="view-area-box" id="main"></div>';
+						<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
 			$selector.on("click", "li.datalist", function(){
 				$(this).addClass("active").siblings().removeClass("active");
 				var index = $(this).data('index');
-				var main = document.getElementById('main');
+				var main = document.getElementById(id);
 
 				var barData = bardata[index];
 				drawBar(main, barData);
@@ -75,14 +77,15 @@ define(function(require, exports, module) {
 			$selector.find("li.datalist").eq(0).trigger("click");
 
 		}else {
-			var html='<div class="view-area-box" id="main"></div>';
+			var html='<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
-			var main = document.getElementById('main');
+			var main = document.getElementById(id);
 			drawBar(main, bardata);
 		}	
 	}
 	function setHorizBar($selector, data, fresh) {
 		var bardata = model.change(data , 10);
+		var id = data.viewId || 'main';
 		if( bardata instanceof  Array){
 			//对象数组
 			var frag='<ul class="datalists">';
@@ -91,12 +94,12 @@ define(function(require, exports, module) {
 			}
 			frag+='</ul>';
 			var html='<div class="dataproperty">' + frag +'</div>\
-						<div class="view-area-box" id="main"></div>';
+						<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
 			$selector.on("click", "li.datalist", function(){
 				$(this).addClass("active").siblings().removeClass("active");
 				var index = $(this).data('index');
-				var main = document.getElementById('main');
+				var main = document.getElementById(id);
 
 				var barData = bardata[index];
 				drawHorizBar(main, barData);
@@ -105,14 +108,15 @@ define(function(require, exports, module) {
 			$selector.find("li.datalist").eq(0).trigger("click");
 
 		}else {
-			var html='<div class="view-area-box" id="main"></div>';
+			var html='<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
-			var main = document.getElementById('main');
+			var main = document.getElementById(id);
 			drawHorizBar(main, bardata);
 		}
 	}
 	function setLine($selector, data, fresh){
 		var linedata = model.change(data, 2);
+		var id = data.viewId || 'main';
 		if( linedata instanceof  Array){
 			//对象数组
 			var frag='<ul class="datalists">';
@@ -121,12 +125,12 @@ define(function(require, exports, module) {
 			}
 			frag+='</ul>';
 			var html='<div class="dataproperty">' + frag +'</div>\
-						<div class="view-area-box" id="main"></div>';
+						<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
 			$selector.on("click", "li.datalist", function(){
 				$(this).addClass("active").siblings().removeClass("active");
 				var index = $(this).data('index');
-				var main = document.getElementById('main');
+				var main = document.getElementById(id);
 
 				var lineData = linedata[index];
 				drawBar(main, lineData);
@@ -135,14 +139,15 @@ define(function(require, exports, module) {
 			$selector.find("li.datalist").eq(0).trigger("click");
 
 		}else {
-			var html='<div class="view-area-box" id="main"></div>';
+			var html='<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
-			var main = document.getElementById('main');
+			var main = document.getElementById(id);
 			drawBar(main, linedata);
 		}
 	}
 	function setPie($selector, data, fresh) {
 		var pieData = model.change(data, 1);
+		var id = data.viewId || 'main';
 		console.log(pieData);
 		if( pieData instanceof Array){
 			var frag='<ul class="datalists">';
@@ -151,30 +156,31 @@ define(function(require, exports, module) {
 			}
 			frag+='</ul>';
 			var html='<div class="dataproperty">' + frag +'</div>\
-				<div class="view-area-box" id="main"></div>';
+				<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
 			$selector.on("click", "li.datalist", function(){
 				$(this).addClass("active").siblings().removeClass("active");
 				var index = $(this).data('index');
-				var main = document.getElementById('main');
+				var main = document.getElementById(id);
 				var pie = pieData[index];
 				drawPie(main, pie);
 
 			});
 			$selector.find("li.datalist").eq(0).trigger("click");
 		} else {
-			var html='<div class="view-area-box" id="main"></div>';
+			var html='<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
-			var main = document.getElementById('main');
+			var main = document.getElementById(id);
 			drawPie(main, pieData);
 		}
 	}
 	function setTimeline($selector, data, fresh){
 		var tlData = model.change(data, 4);//对象数组
+		var id = data.viewId || 'main';
 				console.log(tlData);
-				var html='<div class="view-area-box" id="main"></div>';
+				var html='<div class="view-area-box" id="'+id+'"></div>';
 				$selector.html(html);
-				var main = document.getElementById('main');
+				var main = document.getElementById(id);
 				if(fresh == 'false'){
 					drawTimeLine(main, tlData);
 				}else{
@@ -184,12 +190,13 @@ define(function(require, exports, module) {
 	}
 	function setParallel($selector, data, fresh) {
 		var plData = model.change(data, 5);
+		var id = data.viewId || 'main';
 		if(data.property.length === 1){
 			
 			console.log(plData);
-			var html='<div class="view-area-box" id="main"></div>';
+			var html='<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
-			var main = document.getElementById('main');
+			var main = document.getElementById(id);
 			drawParallel(main, plData);
 		} else {
 			
@@ -200,12 +207,12 @@ define(function(require, exports, module) {
 			}
 			frag+='</ul>';
 			var html='<div class="dataproperty">' + frag +'</div>\
-					<div class="view-area-box" id="main"></div>';
+					<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
 			$selector.on("click", "li.datalist", function(){
 				$(this).addClass("active").siblings().removeClass("active");
 				var index = $(this).data('index');
-				var main = document.getElementById('main');
+				var main = document.getElementById(id);
 				var pie = plData[index];
 				drawParallel(main, pie);
 						
@@ -216,6 +223,7 @@ define(function(require, exports, module) {
 	}
 	function setTree($selector, data, fresh) {
 		console.log($selector.attr('class'));
+		var id = data.viewId || 'main';
 		var tree = model.change(data, 6);
 		$selector.empty();
 		var width = $selector.width()*0.9;
@@ -224,7 +232,7 @@ define(function(require, exports, module) {
 		//边界空白
 		var padding = {left: 80, right:50, top: 20, bottom: 20 };
 		//创建svg容器
-		var svg = d3.select('.'+$selector.attr('class'))
+		var svg = d3.select('#'+id)
 	           .append("svg")
 	           .attr("id","svgTree")
 		       .attr("width", width)
@@ -243,12 +251,12 @@ define(function(require, exports, module) {
 		});
 	}
 	function setFord($selector, data, fresh) {
-			
+		var id = data.viewId || 'main';
 			$selector.empty();
 			var width  = $selector.width();	//SVG绘制区域的宽度
 			var height = 500;	//SVG绘制区域的高度
 				
-			var svg = d3.select('.'+$selector.attr('class'))			//选择<body>
+			var svg = d3.select('#'+id)			//选择<body>
 						.append("svg").attr("id","svgFord")			//在<body>中添加<svg>
 						.attr("width", width)	//设定<svg>的宽度属性
 						.attr("height", height);//设定<svg>的高度属性
@@ -263,16 +271,18 @@ define(function(require, exports, module) {
 			});
 	}
 	function setMap($selector, data, fresh) {
-		var html='<div class="view-area-box" id="main"></div>';
+		var id = data.viewId || 'main';
+		var html='<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
-			var main = document.getElementById('main');
+			var main = document.getElementById(id);
 			var mapData = model.change(data, 8);
 			drawMapArea(main, mapData);
 	}
 	function setWord($selector, data, fresh) {
-		var html='<div class="view-area-box" id="main"></div>';
+		var id = data.viewId || 'main';
+		var html='<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
-			var main = document.getElementById('main');
+			var main = document.getElementById(id);
 			var wordData = model.change(data, 9);
 			console.log( wordData);
 		drawWord(main, wordData);
@@ -284,12 +294,13 @@ define(function(require, exports, module) {
 	}
 	function setRadar($selector, data, fresh) {
 		var plData = model.change(data, 5);
+		var id = data.viewId || 'main';
 		if(data.property.length === 1){
 			
 			console.log(plData);
-			var html='<div class="view-area-box" id="main"></div>';
+			var html='<div class="view-area-box" id="'+id+'"></div>';
 			$selector.html(html);
-			var main = document.getElementById('main');
+			var main = document.getElementById(id);
 			drawRadar(main, plData);
 		} else {
 			
@@ -305,7 +316,7 @@ define(function(require, exports, module) {
 			$selector.on("click", "li.datalist", function(){
 				$(this).addClass("active").siblings().removeClass("active");
 				var index = $(this).data('index');
-				var main = document.getElementById('main');
+				var main = document.getElementById(id);
 				var pie = plData[index];
 				drawRadar(main, pie);
 						
@@ -313,5 +324,5 @@ define(function(require, exports, module) {
 			$selector.find("li.datalist").eq(0).trigger("click");
 		}
 	}
-	module.exports = layer;
+	module.exports = drawDVL;
 });

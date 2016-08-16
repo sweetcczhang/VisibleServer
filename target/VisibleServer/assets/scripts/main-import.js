@@ -50,6 +50,7 @@ define(function(require, exports, module){
                     }
                 }
                 var tr = [];
+                if(!data) return;
                 for( var i = 0; i < data.DATA.length; i++) {
      				var s = data.DATA[i];
      				var op = '<tr><td>'+ s.id + '</td><td>'+s.title+'</td><td>'+s.relationtype+'</td><td><span class="td-cho" id="'+s.id+'">选择</span>|<span class="td-del" id="'+s.id+'">删除</td></tr>';
