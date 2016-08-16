@@ -16,7 +16,7 @@ define(function(require,exports,module){
 						if(index ===1 ) {
 							switch(relationtype){
 								case 1:
-									return $this.PieData(data) ;
+									return $this.pieData(data) ;
 									break;
 								case 2:
 								case 4:

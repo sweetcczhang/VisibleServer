@@ -120,7 +120,7 @@ public class UserController {
         userService.deleteUserCache(userid, cacheid);
 
         try {
-            String ret = String.format(format, true, 0);
+            String ret = String.format(format, true, 0,"{}");
             response.getWriter().write(ret);
 
         } catch (IOException e) {

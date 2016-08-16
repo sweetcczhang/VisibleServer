@@ -15,34 +15,44 @@ define(function(require, exports, module) {
 
 		var source ;//= $.data('cache');
 		source = require('sourcedataexample');
+	var local = window.localStorage;
+	var layercache = local.getItem('layercache') || [];
+	var cacheData = JSON.parse(layercache);
 		var current = '';
 		(function load(){
+
+			var list = '' ;
+			for( var item in cacheData){
+				list +='<li class = "datalist" data-value = '+ item +'>'+cacheData[item].title+'</li>';
+			}
+			$('.datalists').html(list);
+			$('.datalists li.datalist').eq(0).trigger('click');
 			//alert(source)
-			var api = 'get_data';
-			$.ajax({
-		 		type:'post',
-		 		url: api,
-		 		async: true,
-		 		data: {'id':1},
-		 		dataType:"json",
-		 		jsonp: 'callback',
-		 		crossDomain:true,
-		 		success:function (data) {
-		 			console.log(JSON.stringify(data));
-		 			data = data.DATA;
-		 			var list = '' ;
-		 			source = data;
-		 			current = data[0];
-					for( var item in data){
-						list +='<li class = "datalist" data-value = '+ item +'>'+data[item].title+'</li>';
-					}
-					$('.datalists').html(list);
-					$('.datalists li').eq(0).trigger('click');
-		 		},
-		 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-		 			console.log(XMLHttpRequest.status);
-	            }
-		 	});
+			// var api = 'get_data';
+			// $.ajax({
+		 	// 	type:'post',
+		 	// 	url: api,
+		 	// 	async: true,
+		 	// 	data: {'id':1},
+		 	// 	dataType:"json",
+		 	// 	jsonp: 'callback',
+		 	// 	crossDomain:true,
+		 	// 	success:function (data) {
+		 	// 		console.log(JSON.stringify(data));
+		 	// 		data = data.DATA;
+		 	// 		var list = '' ;
+		 	// 		source = data;
+		 	// 		current = data[0];
+			// 		for( var item in data){
+			// 			list +='<li class = "datalist" data-value = '+ item +'>'+data[item].title+'</li>';
+			// 		}
+			// 		$('.datalists').html(list);
+			// 		$('.datalists li').eq(0).trigger('click');
+		 	// 	},
+		 	// 	error: function(XMLHttpRequest, textStatus, errorThrown) {
+		 	// 		console.log(XMLHttpRequest.status);
+	         //    }
+		 	// });
 			
 		}())
 
@@ -68,9 +78,9 @@ define(function(require, exports, module) {
 		});
 		$('.datalists').on('click', '.datalist', function() {
 			var name = $(this).data('value');
-			current = source[name];
-			$('.datadisplay-choose li').eq(0).trigger('click');
-			table('.datadisplay-table', current, false);
+			current = cacheData[name];
+			$('.datadisplay-choose li').eq(1).trigger('click');
+			layer($('.datadisplay-view'), current, current.type, false );
 		});
 		
 	});

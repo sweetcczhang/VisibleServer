@@ -101,7 +101,7 @@ define(function(require, exports, module){
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
                         console.log(XMLHttpRequest.status);
-                        creatTable(null);
+                        //creatTable(null);
                     }
                 });
             });

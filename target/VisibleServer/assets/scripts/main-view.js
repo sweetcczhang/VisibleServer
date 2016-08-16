@@ -58,6 +58,8 @@ define(function(require, exports, module){
 				var local = window.localStorage;
 				var layercache = local.getItem('layercache') || [];
 				layercache.push(current);
+				local.setItem('layercache', JSON.stringify(layercache));
+				window.location.href='view';
 				// var api = 'upload_data';
 				// type = current.type;
 				// $.ajax({

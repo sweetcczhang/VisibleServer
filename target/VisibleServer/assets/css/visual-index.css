@@ -572,7 +572,10 @@ body {
     border: 1px solid #4a86c5;
     cursor: pointer;
 }
-.edit-popup .popup-con .data-cache-box ,.edit-popup .popup-con .view-cache-box {
+.edit-popup .popup-con .view-cache-box{
+
+}
+.edit-popup .popup-con .data-cache-box {
   display: none;
 }
 

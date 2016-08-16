@@ -14,7 +14,7 @@ define(function(require, exports, module){
 		        $('.popup-report').css('display', 'block');
 	     });
 		 $('.popup-btn').on('click', '.btn-add', function() {
-
+				
 	     });
 	     $('.popup-report').on('click', '.btn-cancel , .popup-cl', function() {
 		        $('.popup-report').css('display', 'none');
