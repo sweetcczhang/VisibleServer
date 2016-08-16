@@ -11,12 +11,11 @@ define(function(require, exports, module) {
 			loadreport();
 			$('.table-container').on('click','.td-cho', function() {
 				var id = $(this).attr('id');
-
 				var session = window.sessionStorage;
 				var userData = JSON.parse(session.getItem('userData'));
 				console.log(userData);
 				console.log(id);
-
+				window.location.href = 'reportPC?reportid='+id;
 			});
 			$('.table-container').on('click','.td-del', function() {
 				var id = $(this).attr('id');

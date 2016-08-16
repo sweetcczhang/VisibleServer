@@ -10,7 +10,7 @@ define(function(require,exports,module){
 
 		require('./bootstrap/bootstrap.min.css');
 		require('../css/header.css');
-		require('../css/visual-report.css');
+		require('../css/report-pc.css');
 		require('bootstrap');
 
         var model = require('./model');
@@ -30,7 +30,7 @@ define(function(require,exports,module){
             jsonp: 'callback',
             crossDomain:true,
             success:function (data) {
-
+                console.log(data);
                 addContent.call($('.report-edit'), data);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -40,23 +40,24 @@ define(function(require,exports,module){
     }
     function addContent(data){
         var that = this;
-        var report = JSON.parse(data.reportData);
+        var report = JSON.parse(data.DATA.reportData);
         var desc = report.desc;
         var content = report.content;
-        var descHtml = '<div class="edit-des">+
+        var descHtml = '<div class="edit-des">'+
                         '<div class="des-title">'+desc.title+'</div>'+
                         '<p class="des-detail">'+desc.content+'</p>'+
                         '</div>';
         $(that).append(descHtml);
         var conHtml = [];
         for(var i =0; i<content.length;i++){
+            var cur = content[i];
             var html = '<div class="edit-chart">' +
                 '<div class="chart-title">'+cur.title+'<div class="chart-desicon"></div></div>'
                 +'<div class="chart-con">'
                 +'<div class="chart-con-view" id="view'+cur.viewId+'"></div>'
                 +'<div class="chart-con-des">'+cur.describe+'</div>'
                 +'</div></div>';
-            $(that).html(html);
+            $(that).append(html);
             $selector = $(this).find('#view'+cur.viewId);//.attr('id');
             setlayer($selector, cur, cur.type, false);
         }
