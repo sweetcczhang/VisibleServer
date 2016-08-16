@@ -15,12 +15,13 @@ define(function(require,exports,module){
 
         var model = require('./model');
         var setlayer = require('./draw-report.js');
+    var reportid = getQueryString('reportid') || 7;
         $(function () {
             loadReport();
         })
     function loadReport() {
         var api ='../user/getreportbyid';
-        var reportid = '7';
+        //var reportid = '7';
         $.ajax({
             type:'get',
             url: api,
@@ -62,6 +63,18 @@ define(function(require,exports,module){
             setlayer($selector, cur, cur.type, false);
         }
     }
+    function formatJson(obj) {
+        var arr = [];
+        for(var item in obj) {
+            var text  = '<p>'+item+':&nbsp;&nbsp;'+ obj[item] + '</p>';
+            arr.push(text);
+        }
+        return arr.join('');
+    }
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
 
-	
 });
