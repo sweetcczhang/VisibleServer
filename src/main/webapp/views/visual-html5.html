@@ -11,7 +11,9 @@
 				"d3": "util/d3.min.js",
 				"echarts": "util/echarts.min.js",
 				"d3.layout.cloud": "util/d3.layout.cloud.js",
-				"bootstrap": "bootstrap/bootstrap.min.js"
+				"bootstrap": "bootstrap/bootstrap.min.js",
+				"jquery.qrcode.js": "util/jquery.qrcode.js",
+				"qrcode": "util/qrcode.js"
 			}
 		});
 		seajs.use("visual-report.js");
@@ -55,6 +57,12 @@
 			</div>
 		</div>
 		<!--  -->
+		<div class="qr-container">
+			<div class="qr-bg"></div>
+			<div class="qrmain">
+				<div id="qrcode" class="qrcode"></div><p class="qrtext">微信扫一扫</p>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

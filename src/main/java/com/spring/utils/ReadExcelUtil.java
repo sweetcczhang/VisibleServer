@@ -46,7 +46,7 @@ public class ReadExcelUtil {
         StringBuilder sb = new StringBuilder(path);
         String postfix = sb.substring(sb.lastIndexOf(".") + 1);
 
-
+        System.out.println("postfix is: *" + postfix + "*");
         if (OFFICE_EXCEL_2003_POSTFIX.equals(postfix)) {
             return readXls(path);
         } else if (OFFICE_EXCEL_2010_POSTFIX.equals(postfix)) {

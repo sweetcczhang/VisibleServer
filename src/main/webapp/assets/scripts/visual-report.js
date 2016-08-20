@@ -1,5 +1,7 @@
 define(function(require, exports, module) {
 		require('jquery');
+		require('jquery.qrcode.js');
+		require('qrcode');
 
 		require('./bootstrap/bootstrap.min.css');
 		require('../css/header.css');
@@ -9,13 +11,27 @@ define(function(require, exports, module) {
 		var msgbox = require('./msgbox.js');
 		$(function() {
 			loadreport();
-			$('.table-container').on('click','.td-cho', function() {
+			$('.table-container').on('click','.td-pc', function() {
 				var id = $(this).attr('id');
 				var session = window.sessionStorage;
 				var userData = JSON.parse(session.getItem('userData'));
 				console.log(userData);
 				console.log(id);
 				window.location.href = 'reportPC?reportid='+id;
+			});
+			$('.table-container').on('click','.td-phone', function() {
+				var id = $(this).attr('id');
+				$('#qrcode').empty()
+				('#qrcode').qrcode({
+					width: 200, //宽度
+					height:200, //高度
+					text: 'http://192.168.1.126:8080/VisibleServer/visual/reportPhone?reportid='+id//任意内容
+				});
+				$('.qr-container').css('display', 'block');
+				$('.qr-bg').on('click', function() {
+					$('.qr-container').css('display', 'none');
+				});
+
 			});
 			$('.table-container').on('click','.td-del', function() {
 				var id = $(this).attr('id');
@@ -68,7 +84,7 @@ define(function(require, exports, module) {
 				var report = JSON.parse(s.reportData) || {};
 				var title = report.desc.title || 'kong';
 				var id = s.id;
-				var op = '<tr><td>'+ s.id + '</td><td>'+title+'</td><td><span class="td-cho" id="'+s.id+'">选择</span>|<span class="td-del" id="'+s.id+'">删除</td></tr>';
+				var op = '<tr><td>'+ s.id + '</td><td>'+title+'</td><td><span class="td-pc" id="'+s.id+'">PC版</span >|<span class="td-phone" id="'+s.id+'">手机版</span>|<span class="td-del" id="'+s.id+'">删除</td></tr>';
 				tr.push(op);
 			}
 			// var session = window.sessionStorage;

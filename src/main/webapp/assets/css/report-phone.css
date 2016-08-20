@@ -1,0 +1,170 @@
+body{
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+}
+
+.page{
+    max-width: 750px;
+    /*min-height: 750px;*/
+    margin: 0 auto;
+    background-size: 100% 100%;
+    background-image: url('../images/bg.jpg');
+    background-color: #333;
+    background-repeat: no-repeat;
+    background-position:bottom right;
+    position: relative;
+    
+}
+.page .bg-corner1{
+    position: absolute;
+    top: 80px;
+    left: 37.6%;
+    -webkit-transform: translateX(-50%) ;
+       -moz-transform: translateX(-50%) ;
+        -ms-transform: translateX(-50%) ;
+         -o-transform: translateX(-50%) ;
+            transform: translateX(-50%) ;
+    width: 230px;
+    height: 230px;
+    padding: 5px;
+    border: 10px solid rgba(255,255,255,0.17);
+    border-radius: 50%;
+}
+.page .bg-corner2{
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    -webkit-transform: translateX(-50%) ;
+       -moz-transform: translateX(-50%) ;
+        -ms-transform: translateX(-50%) ;
+         -o-transform: translateX(-50%) ;
+            transform: translateX(-50%) ;
+    width: 190px;
+    height: 190px;
+    background-color: rgba(255,255,255,0.17);
+    border-radius: 50%;
+}
+.page .bg-hide{
+    position:absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.4);
+}
+.page .page-title{
+    z-index: 5;
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    -webkit-transform: translateX(-50%) ;
+       -moz-transform: translateX(-50%) ;
+        -ms-transform: translateX(-50%) ;
+         -o-transform: translateX(-50%) ;
+            transform: translateX(-50%) ;
+    margin: 0 auto ;
+    width: 78%;
+    text-align: center;
+    color: #fff;
+    font-size: 40px;
+}
+.page .page-des{
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    font-size: 1.5em;
+    position: absolute;
+    bottom: 100px;
+    right: 0;
+    width: 88%;
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 0.2em;
+}
+
+/*.orient .page{
+    background-size: contain;
+}*/
+.orient .page-1{
+    background-size: 40%;
+}
+
+b{
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    height: 15px;
+    opacity: .4;
+    -webkit-transition: all .4s ease-in;
+    transition: all .4s ease-in;
+}
+
+
+b:before, b:after {
+    content: "";
+    display: block;
+    background: #000;
+    width: 2px;
+    height: 14px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    -webkit-transform: rotate(-55deg);
+    -webkit-transform-origin: 100% 100%;
+}
+b:after {
+    -webkit-transform: rotate(55deg);
+    -webkit-transform-origin: 0 100%;
+}
+/*报告内容样式*/
+.page .content-title {
+    text-align: center;
+    color: #fff;
+    position: relative;
+    top: 20px;
+    font-size: 28px;
+    margin: 0;
+}
+.page .chart-con {
+    position: relative;
+    top: 80px;
+}
+.page .content-view {
+    width: 100%;
+    height: 350px;
+    background-color: #000;
+}
+.page .content-des {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 78%;
+    padding: 10px 20px;
+    background: #f0f0f0;
+    font-size: 1em;
+}
+.view-area-box {
+    height: 300px;
+}
+.dataproperty ul.datalists:after {
+    content: ".";
+    height: 0px;
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+.dataproperty ul.datalists li.datalist {
+    float: left;
+    font-size: 12px;
+    margin: 5px;
+    padding: auto 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #000;
+    cursor: pointer;
+    color: #fff;
+}
+.dataproperty ul.datalists li.active {
+    border: 2px solid #fff;
+}

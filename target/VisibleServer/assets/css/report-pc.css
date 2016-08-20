@@ -1,0 +1,131 @@
+*{
+    font-family: "microsoft yahei";
+}
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+div {
+    font-family: "microsoft yahei";
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+ul,
+li {
+    list-style: none;
+}
+html{
+    height:100%;
+}
+body {
+    background: #eff0f4;
+}
+ .dataproperty ul.datalists:after {
+    content: ".";
+    height: 0px;
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+ .dataproperty ul.datalists li.datalist {
+    float: left;
+    font-size: 20px;
+    margin: 5px;
+    padding: auto 10px;
+    height: 30px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+}
+ .dataproperty ul.datalists li.active {
+    border: 2px solid #463232;
+}
+  /*.view-area-box {*/
+    /*margin: 20px;*/
+    /*width: 800px;*/
+    /*height: 500px;*/
+/*}*/
+
+.visual-footer {
+    width: 100%;
+    background: #1B2B43;
+    padding: 20px 0 20px 18px;
+    text-align: center;
+    color: #FFF;
+    font-size: 12px;
+}
+.report-edit{
+    width: 750px;
+    margin: 0 auto;
+}
+.report-edit .edit-des{
+    background-color: #4F5153;
+    box-sizing: border-box;
+    width: 750px;
+    padding: 10px;
+}
+.report-edit .edit-des .des-title{
+    border-bottom: 1px dashed #fff;
+    line-height: 35px;
+    width: 100%;
+    height: 35px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.report-edit .edit-des .des-detail{
+    box-sizing: border-box;
+    margin: 10px auto;
+    padding: 10px;
+    width: 730px;
+    color: #fff;
+}
+/*t图表样式*/
+.report-edit .edit-chart {
+    width: 100%;
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #B1B2C4;
+    border-top: none;
+    position: relative;
+}
+.report-edit .edit-chart .chart-title {
+    box-sizing: border-box;
+    background: url('../images/charttitle-bg.png') repeat-x;
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    padding-left: 10px;
+    position: relative;
+}
+.report-edit .edit-chart .chart-title .chart-desicon{
+    position: absolute;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    top: 5px;
+    background: url('../images/chart-des.png') no-repeat;
+}
+.report-edit .edit-chart .chart-con {
+    position: relative;
+}
+.report-edit .edit-chart .chart-con .chart-con-view {
+    width: 100%;
+    height: 350px;
+}
+
+.report-edit .edit-chart .chart-con .chart-con-des {
+    background-color: rgba(255,255,255,0.6);
+    box-sizing: border-box;
+    padding: 20px;
+    color: #333;
+}
+
+.view-area-box {
+    height: 300px;
+}

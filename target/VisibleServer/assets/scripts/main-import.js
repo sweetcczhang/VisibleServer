@@ -281,6 +281,7 @@ define(function(require, exports, module){
                     success : function(data, status) // 服务器成功响应处理函数
                     {
                         //console.log(data);
+                        msgbox.promp(' 导入成功');
                         var regx=/(\{.*})/;
                         var data = data.match(regx)[0];
                         data = JSON.parse(data); 
