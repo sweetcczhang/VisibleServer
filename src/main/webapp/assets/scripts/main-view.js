@@ -3,8 +3,7 @@ define(function(require, exports, module){
 	var layer = require('./layer');
 	var datamatch = require('./data-match');
 	var msg = require('./msgbox');
-	var session = window.sessionStorage;
-	var current = JSON.parse(session.getItem('current'));
+
 	//main-view 
 		$(function() {
 			
@@ -32,9 +31,11 @@ define(function(require, exports, module){
 			// view laylist click
 			$('.layer-lists').on('click', '.layer-list', function() {
 				var index = $(this).data('layer');
-				//alert(index);
+				alert(index);
+				var session = window.sessionStorage;
+				var current = JSON.parse(session.getItem('current'));
 				if(datamatch(current, index)){
-					current.type = value;
+					current.type = index;
 					session.setItem('current', JSON.stringify(current));
 					layer($('.view-area'), current, index, false);
 				}
@@ -53,37 +54,18 @@ define(function(require, exports, module){
 			$('.button-layercache').on('click', function(event) {
 				//event.preventDefault();
 				/* Act on the event */
+				var session = window.sessionStorage;
 				current = JSON.parse(session.getItem('current'));
-				console.log(current);
+				//console.log(current);
 				var local = window.localStorage;
 				var layercache = JSON.parse(local.getItem('layercache')) || [];
-				layercache.push(current);
+				layercache.push({data: current, layer: current.type});
 				local.setItem('layercache', JSON.stringify(layercache));
-				window.location.href='view';
-				// var api = 'upload_data';
-				// type = current.type;
-				// $.ajax({
-			 	// 	type:'post',
-			 	// 	url: api,
-			 	// 	async: true,
-			 	// 	data: {'data': JSON.stringify(current), 'id':1, 'type': type},
-			 	// 	dataType:"json",
-			 	// 	jsonp: 'callback',
-			 	// 	crossDomain:true,
-			 	// 	success:function (data) {
-			 	// 		console.log(data);
-			 	// 		msg.promp('视图缓存成功');
-			 	// 		setTimeout(function(){
-			 	// 			window.location.href='view';
-			 	// 		},2000);
-			 	// 	},
-			 	// 	error: function(XMLHttpRequest, textStatus, errorThrown) {
-			 	// 		console.log(XMLHttpRequest.status);
-			 	// 		msg.promp('视图缓存出现问题，请重试');
-		         //    }
-			 	// });//ajax end
-				
-				
+				msg.promp('视图缓存成功');
+
+				window.setTimeout(function () {
+					window.location.href='view';
+				}, 1500);
 			});// click end
 			
 		})

@@ -5,7 +5,7 @@ define(function(require, exports, module) {
 	
 	var drawLine = function(main,lineData) {
 		console.log(lineData);
-		var series = barData.series.map(function(item,index) {
+		var series = lineData.series.map(function(item,index) {
 			item.type = 'line';
 			item.smooth = true;
 			return item;

@@ -21,8 +21,8 @@ define(function(require, exports, module) {
 			});
 			$('.table-container').on('click','.td-phone', function() {
 				var id = $(this).attr('id');
-				$('#qrcode').empty()
-				('#qrcode').qrcode({
+				$('#qrcode').empty();
+				$('#qrcode').qrcode({
 					width: 200, //宽度
 					height:200, //高度
 					text: 'http://192.168.1.126:8080/VisibleServer/visual/reportPhone?reportid='+id//任意内容

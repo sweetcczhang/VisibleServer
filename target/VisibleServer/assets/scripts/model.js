@@ -176,7 +176,7 @@ define(function(require,exports,module){
 			console.log(data);
 			var i;
 			var array = [];
-			
+			var dataobj = {};
 			if((data.property.length === 1 && data.objects.length > 0) || (data.objects.length == 1)) {
 				var i, oj = data.objects;
 				//alert(1);

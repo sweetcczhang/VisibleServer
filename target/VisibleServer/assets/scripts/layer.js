@@ -129,7 +129,7 @@ define(function(require, exports, module) {
 				var main = document.getElementById('main');
 
 				var lineData = linedata[index];
-				drawBar(main, lineData);
+				drawLine(main, lineData);
 
 			});
 			$selector.find("li.datalist").eq(0).trigger("click");
@@ -138,7 +138,7 @@ define(function(require, exports, module) {
 			var html='<div class="view-area-box" id="main"></div>';
 			$selector.html(html);
 			var main = document.getElementById('main');
-			drawBar(main, linedata);
+			drawLine(main, linedata);
 		}
 	}
 	function setPie($selector, data, fresh) {

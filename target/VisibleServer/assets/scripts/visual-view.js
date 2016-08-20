@@ -20,40 +20,19 @@ define(function(require, exports, module) {
 	var cacheData = JSON.parse(layercache);
 		var current = '';
 		(function load(){
-
-			var list = '' ;
-			for( var item in cacheData){
-				list +='<li class = "datalist" data-value = '+ item +'>'+cacheData[item].title+'</li>';
+			if(cacheData.length > 0) {
+				var list = '' ;
+				for( var item in cacheData){
+					var data = cacheData[item].data || {};
+					var type = cacheData[item].layer;
+					list +='<li class = "datalist" data-value = '+ item +'>'+data.title+'</li>';
+				}
+				current = cacheData[0];
+				$('.datalists').html(list);
+				$('.datalists li.datalist').eq(0).trigger('click');
 			}
-			$('.datalists').html(list);
-			$('.datalists li.datalist').eq(0).trigger('click');
-			//alert(source)
-			// var api = 'get_data';
-			// $.ajax({
-		 	// 	type:'post',
-		 	// 	url: api,
-		 	// 	async: true,
-		 	// 	data: {'id':1},
-		 	// 	dataType:"json",
-		 	// 	jsonp: 'callback',
-		 	// 	crossDomain:true,
-		 	// 	success:function (data) {
-		 	// 		console.log(JSON.stringify(data));
-		 	// 		data = data.DATA;
-		 	// 		var list = '' ;
-		 	// 		source = data;
-		 	// 		current = data[0];
-			// 		for( var item in data){
-			// 			list +='<li class = "datalist" data-value = '+ item +'>'+data[item].title+'</li>';
-			// 		}
-			// 		$('.datalists').html(list);
-			// 		$('.datalists li').eq(0).trigger('click');
-		 	// 	},
-		 	// 	error: function(XMLHttpRequest, textStatus, errorThrown) {
-		 	// 		console.log(XMLHttpRequest.status);
-	         //    }
-		 	// });
-			
+
+
 		}())
 
 	$(function(){
@@ -64,14 +43,12 @@ define(function(require, exports, module) {
 				$('.datadisplay-table').css('display',"block");
 				$('.datadisplay-view').css('display',"none");
 
-				table('.datadisplay-table', current, false);
+				table('.datadisplay-table', current.data, false);
 			} else {
 				$('.datadisplay-view').css('display',"block");
 				$('.datadisplay-table').css('display',"none");
 				
-				layer($('.datadisplay-view'), current, current.type, false );
-				
-				
+				layer($('.datadisplay-view'), current.data, current.layer, false );
 			}
 			$(this).siblings().removeClass('active');
 			$(this).addClass('active');
@@ -80,7 +57,7 @@ define(function(require, exports, module) {
 			var name = $(this).data('value');
 			current = cacheData[name];
 			$('.datadisplay-choose li').eq(1).trigger('click');
-			layer($('.datadisplay-view'), current, current.type, false );
+			layer($('.datadisplay-view'), current.data, current.layer, false );
 		});
 		
 	});

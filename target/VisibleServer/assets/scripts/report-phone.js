@@ -72,7 +72,7 @@ define(function(require,exports,module){
 		$(that).append(descHtml);
 		var conHtml = [];
 		for(var i =0; i<content.length;i++){
-			var cur = content[i];
+			var cur = content[i].data;
 			var html = '<div class="page">' +
 							'<h3 class="content-title">'+cur.title+'</h3>'
 							+'<div class="chart-con">'
@@ -81,7 +81,7 @@ define(function(require,exports,module){
 						+'</div></div>';
 			$(that).append(html);
 			$selector = $(this).find('#view'+cur.viewId);//.attr('id');
-			setlayer($selector, cur, cur.type, false);
+			setlayer($selector, cur, content[i].layer, false);
 			var isWindowOrient = (window.orientation || 0) === 0;
 			var wrap = document.getElementById('wrap');
 			var container = document.getElementById('container');

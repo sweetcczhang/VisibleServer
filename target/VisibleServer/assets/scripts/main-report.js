@@ -8,18 +8,18 @@ define(function(require, exports, module){
 	require('./util/underscore.js');
 	$(function() {
 		var edit = '<div class="edit-chart" id="ID">'
-			+'<div class="chart-title">数据图表标题<div class="chart-desicon"></div></div>'
+			+'<div class="chart-title">数据图表标题<div class="chart-del"></div></div>'
 			+'<div class="chart-con">'
 			+'<div class="chart-con-add">+</div>'
-			+'<div class="chart-con-view">图标图表图表</div>'
-			+'<div class="chart-con-des">数据图表标题数据图表标题数据图表标题数据图表标题数据图表标题</div>'
+			+'<div class="chart-con-view"></div>'
+			+'<div class="chart-con-des"></div>'
 			+'</div>'
 			+'</div>';
 		 $('.report-edit').on('click', '.chart-con-add', function() {
 		        $('.popup-report').css('display', 'block');
 			 	var id = $(this).parents('.edit-chart').attr('id');
 				 //弹出框选择
-				 $('.popup-report').on('click', '.data-cache , .view-cache', function() {
+				 $('.popup-report').one('click', '.data-cache , .view-cache', function() {
 					 var co = parseInt($(this).data('co'));
 					 $(this).siblings().removeClass('active');
 					 $(this).addClass('active');
@@ -32,11 +32,16 @@ define(function(require, exports, module){
 						 viewCache();
 					 }
 				 });
-				 $('.popup-btn').on('click', '.btn-add', function() {
+				 $('.popup-btn').one('click', '.btn-add', function() {
 					 btnADD(id);
 				 });
 	     });
-
+		$('.report-edit').on('click', '.chart-del', function() {
+			var id = $(this).parents('.edit-chart').attr('id');
+			$('#'+ id).remove();
+			delete report_content[id];
+			console.log(report_content);
+		});
 	     $('.popup-report').on('click', '.btn-cancel , .popup-cl', function() {
 		        $('.popup-report').css('display', 'none');
 	     });
@@ -77,7 +82,7 @@ define(function(require, exports, module){
 			var layercache = JSON.parse(local.getItem('layercache') ) || [];
 			var op = ['<option value="-1">请选择缓存视图</option>'];
 			for(var i = 0; i< layercache.length; i++) {
-				var d = layercache[i];
+				var d = layercache[i].data;
 				var option = '<option value="'+i+'">'+ d.title +'</option>';
 				op.push(option);
 			}
@@ -96,36 +101,44 @@ define(function(require, exports, module){
 				var vtype = $('#layer-select').val();
 				var title = $('#data-title').val();
 				var desc = $('#data-desc').val();
-				var cur = userData.DATA[dindex];
-				cur.type = vtype;
-				cur.title = title;
-				cur.describe = desc;
+				var cur = $.extend(true, {}, userData.DATA[dindex]);
+				vtype = !!vtype ? vtype : cur.type;
+				cur.title = !!title ? title : cur.title;
+				cur.describe = !!desc ? desc : cur.describe;
 				cur.viewId = randomNum();
-				//console.log(dindex, vtype, title, desc);
+				var curData = $.extend(true, {}, {data: cur, layer: vtype});
 			}else if( parseInt(type) === 2) {//view cache
 				var vindex = $('#view-select').val();
 				var title = $('#view-title').val();
 				var desc = $('#view-desc').val();
-				cur = layercache[vindex];
-				cur.title = title;
-				cur.describe = desc;
+				var curData = $.extend(true, {},layercache[vindex]);
+				var cur = curData.data;
+				cur.title = !!title ? title : cur.title;
+				cur.describe = !!desc ? desc : cur.describe;
 				cur.viewId = randomNum();
-				console.log(vindex, vtype, title, desc);
 			}
-			report_content[id] = cur;
-			addContent.call($id, cur);
+			var con = {};
+			con[id] = curData;
+			report_content= $.extend(true, report_content, con);
 			console.log(report_content);
+			addContent.call($id, report_content[id]);
 		}
-		function addContent(cur){
+		function copyObj(obj){
+			var j = JSON.stringify(obj);
+			return JSON.parse(j);
+		}
+		function addContent(curData){
 			var that = this;
-			var html = '<div class="chart-title">'+cur.title+'<div class="chart-desicon"></div></div>'
+			var cur = curData.data;
+			var html = '<div class="chart-title">'+cur.title+'<div class="chart-del"></div></div>'
 				+'<div class="chart-con">'
 				+'<div class="chart-con-view" id="view'+cur.viewId+'"></div>'
 				+'<div class="chart-con-des">'+cur.describe+'</div>'
 				+'</div>';
 			$(that).html(html);
 			$selector = $(this).find('#view'+cur.viewId);//.attr('id');
-			setlayer($selector, cur, cur.type, false);
+			console.warn($selector);
+			setlayer($selector, cur, curData.layer, false);
 
 			$('.popup-report').css('display', 'none');
 		}

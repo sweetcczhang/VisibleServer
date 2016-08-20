@@ -51,16 +51,17 @@ define(function(require,exports,module){
         $(that).append(descHtml);
         var conHtml = [];
         for(var i =0; i<content.length;i++){
-            var cur = content[i];
+            var cur = content[i].data;
+            console.log(cur);
             var html = '<div class="edit-chart">' +
-                '<div class="chart-title">'+cur.title+'<div class="chart-desicon"></div></div>'
+                '<div class="chart-title">'+cur.title+'</div>'
                 +'<div class="chart-con">'
                 +'<div class="chart-con-view" id="view'+cur.viewId+'"></div>'
                 +'<div class="chart-con-des">'+cur.describe+'</div>'
                 +'</div></div>';
             $(that).append(html);
             $selector = $(this).find('#view'+cur.viewId);//.attr('id');
-            setlayer($selector, cur, cur.type, false);
+            setlayer($selector, cur, content[i].layer, false);
         }
     }
     function formatJson(obj) {

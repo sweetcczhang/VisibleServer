@@ -129,7 +129,7 @@ define(function(require, exports, module) {
 				var main = document.getElementById('main');
 
 				var lineData = linedata[index];
-				drawBar(main, lineData);
+				drawLine(main, lineData);
 
 			});
 			$selector.find("li.datalist").eq(0).trigger("click");
@@ -138,12 +138,12 @@ define(function(require, exports, module) {
 			var html='<div class="view-area-box" id="main"></div>';
 			$selector.html(html);
 			var main = document.getElementById('main');
-			drawBar(main, linedata);
+			drawLine(main, linedata);
 		}
 	}
 	function setPie($selector, data, fresh) {
 		var pieData = model.change(data, 1);
-		console.log(pieData);
+		//console.log(pieData);
 		if( pieData instanceof Array){
 			var frag='<ul class="datalists">';
 			for(var i = 0; i < pieData.length; i++){
@@ -171,7 +171,7 @@ define(function(require, exports, module) {
 	}
 	function setTimeline($selector, data, fresh){
 		var tlData = model.change(data, 4);//对象数组
-				console.log(tlData);
+				//console.log(tlData);
 				var html='<div class="view-area-box" id="main"></div>';
 				$selector.html(html);
 				var main = document.getElementById('main');
@@ -186,14 +186,14 @@ define(function(require, exports, module) {
 		var plData = model.change(data, 5);
 		if(data.property.length === 1){
 			
-			console.log(plData);
+			//console.log(plData);
 			var html='<div class="view-area-box" id="main"></div>';
 			$selector.html(html);
 			var main = document.getElementById('main');
 			drawParallel(main, plData);
 		} else {
 			
-			console.log(plData);
+			//console.log(plData);
 			var frag='<ul class="datalists">';
 			for(var i = 0; i < plData.length; i++){
 					frag+='<li class="datalist"  data-index="'+ i +'">'+ plData[i].objects[0] +'</li>';
@@ -215,7 +215,7 @@ define(function(require, exports, module) {
 		
 	}
 	function setTree($selector, data, fresh) {
-		console.log($selector.attr('class'));
+		//console.log($selector.attr('class'));
 		var tree = model.change(data, 6);
 		$selector.empty();
 		var width = $selector.width()*0.9;
@@ -233,7 +233,7 @@ define(function(require, exports, module) {
 	    	   			     .attr("transform","translate("+ padding.left + "," + padding.top + ")");
 	  	//保存图片标志
 	 	//savePic(width-20,height,svg.attr("id"));
-	 	console.log(tree);
+	 	//console.log(tree);
 	 	drawTree(width,height,svgcontainer,tree);
 	 	$('body').on("contextmenu", 'svg', function(){
 	 		event.preventDefault();
@@ -274,7 +274,7 @@ define(function(require, exports, module) {
 			$selector.html(html);
 			var main = document.getElementById('main');
 			var wordData = model.change(data, 9);
-			console.log( wordData);
+			//console.log( wordData);
 		drawWord(main, wordData);
 		$('body').on("contextmenu", 'svg', function(event){
 			event.preventDefault();
@@ -286,14 +286,14 @@ define(function(require, exports, module) {
 		var plData = model.change(data, 5);
 		if(data.property.length === 1){
 			
-			console.log(plData);
+			//console.log(plData);
 			var html='<div class="view-area-box" id="main"></div>';
 			$selector.html(html);
 			var main = document.getElementById('main');
 			drawRadar(main, plData);
 		} else {
 			
-			console.log(plData);
+			//console.log(plData);
 			var frag='<ul class="datalists">';
 			for(var i = 0; i < plData.length; i++){
 					frag+='<li class="datalist"  data-index="'+ i +'">'+ plData[i].objects[0] +'</li>';
