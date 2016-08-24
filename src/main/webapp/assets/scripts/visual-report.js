@@ -25,7 +25,7 @@ define(function(require, exports, module) {
 				$('#qrcode').qrcode({
 					width: 200, //宽度
 					height:200, //高度
-					text: 'http://192.168.1.126:8080/VisibleServer/visual/reportPhone?reportid='+id//任意内容
+					text: 'http://192.168.1.105:8080/VisibleServer/visual/reportPhone?reportid='+id//任意内容
 				});
 				$('.qr-container').css('display', 'block');
 				$('.qr-bg').on('click', function() {
