@@ -12,8 +12,12 @@ define(function(require, exports, module) {
 		var option = {
 		    title : {
 		        text: pieData.title,
-		        x:'center'
+		        x:'center',
+		        textStyle: {
+			    	color: '#fff'
+			    }
 		    },
+		    backgroundColor: '#2c343c',
 		    tooltip : {
 		        trigger: 'item',
 		        formatter: "{a} <br/> {b} : ({c})"
@@ -22,7 +26,10 @@ define(function(require, exports, module) {
 		        orient : 'vertical',
 		        x : 'left',
 		        y:'top',
-		        data: pieData.property
+		        data: pieData.property,
+		        textStyle: {
+			    	color: '#fff'
+			    }
 		    },
 		    toolbox: {
 		        show : true,

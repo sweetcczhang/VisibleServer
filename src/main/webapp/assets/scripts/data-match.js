@@ -40,8 +40,8 @@ define(function(require, exports, module) {
 			}
 			
 		}
-		if(index === 8 ) { // map
-			if(relationtype === 7 && index === 8) return true;
+		if(index === 8 || relationtype === 7) { // map
+			if(relationtype === 7 && (index === 8||index === 1|| index === 2 || index===3 || index === 4 || index === 10)) return true;
 			else {
 				createPop();
 				return false;

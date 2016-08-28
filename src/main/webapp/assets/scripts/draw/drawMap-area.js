@@ -49,7 +49,7 @@ define(function(require, exports, module) {
 			    },
 		    },
 		    
-		    backgroundColor: '#404a59',
+		    backgroundColor: '#2c343c',
 		    tooltip: {
 		        trigger: 'item'
 		        

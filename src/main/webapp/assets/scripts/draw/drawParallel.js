@@ -29,7 +29,7 @@ define(function(require, exports, module) {
 		//console.log(axis);
 
 		var option = {
-		    backgroundColor: '#333',
+		    backgroundColor: '#2c343c',
 		    legend: {
 		        bottom: 30,
 		        data: paraData.objects,

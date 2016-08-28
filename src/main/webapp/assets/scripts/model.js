@@ -123,7 +123,8 @@ define(function(require,exports,module){
                 propertyArr.push(arr[0]);
 				series.push({name: name, data: arr[1]});
 			}
-			if(propertyArr.length > 0 && propertyArr[0].length !== propertyArr[1].length){
+		//&& propertyArr[0].length !== propertyArr[1].length
+			if(propertyArr.length > 1 ){
 				var objArr=[];
 				for(var i=0;i<propertyArr.length; i++){
 					var obj ={

@@ -20,6 +20,9 @@ define(function(require, exports, module) {
 			    title: {
 			        left: 'center',
 			        text: timeData.title,
+			        textStyle: {
+				    	color: '#fff'
+				    }
 			    },
 			    toolbox: {
 			        show: true,
@@ -33,11 +36,41 @@ define(function(require, exports, module) {
 			    xAxis: {
 			        type: 'category',
 			        boundaryGap: false,
-			        data: timeData.property
+			        data: timeData.property,
+			        axisLine: {
+		                lineStyle: {
+		                    color: '#fff'
+		                }
+		            },
+		            axisLabel: {
+		                textStyle: {
+		                    color: '#fff'
+		                }
+		            },
+		            axisTick: {
+		                lineStyle: {
+		                    color: '#fff'
+		                }
+		            }
 			    },
 			    yAxis: {
 			        type: 'value',
-			        boundaryGap: [0, '50%']
+			        boundaryGap: [0, '50%'],
+			        axisLine: {
+		                lineStyle: {
+		                    color: '#fff'
+		                }
+		            },
+		            axisLabel: {
+		                textStyle: {
+		                    color: '#fff'
+		                }
+		            },
+		            axisTick: {
+		                lineStyle: {
+		                    color: '#fff'
+		                }
+		            }
 			    },
 			    dataZoom: [{
 			        type: 'inside',

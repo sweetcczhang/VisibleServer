@@ -16,6 +16,8 @@ define(function(require, exports, module){
 			+'</div>'
 			+'</div>';
 		 $('.report-edit').on('click', '.chart-con-add', function() {
+			 	loadData();
+			 	resetPopup();
 		        $('.popup-report').css('display', 'block');
 			 	var id = $(this).parents('.edit-chart').attr('id');
 				 //弹出框选择
@@ -36,6 +38,13 @@ define(function(require, exports, module){
 					 btnADD(id);
 				 });
 	     });
+		 function resetPopup() {
+			 $('.cache-box').css('display', 'block');
+			 $('.data-cache').removeClass('active');
+			 $('.view-cache').removeClass('active');
+			 $('.data-cache-box').css('display', 'none')
+			 $('.view-cache-box').css('display', 'none');
+		 }
 		$('.report-edit').on('click', '.chart-del', function() {
 			var id = $(this).parents('.edit-chart').attr('id');
 			$('#'+ id).remove();
@@ -55,10 +64,35 @@ define(function(require, exports, module){
 			$('.data-cache-box').css('display', 'none');
 			$('.view-cache-box').css('display', 'none');
 			$('.cache-box').css('display', 'block');
+			$('.data-cache').removeClass('active');
+			$('.view-cache').removeClass('active');
 		});
 		$('.button-publish').on('click', function() {
 			addreport();
 		});
+		function loadData() {
+             var api = '../user/getallcache';
+             var userid = {userid: 1};
+             var session = window.sessionStorage;
+             session.setItem('userid',1);
+             $.ajax({
+                 type:'get',
+                 url: api,
+                 async: true,
+                 data: userid,
+                 dataType:"json",
+                 jsonp: 'callback',
+                 crossDomain:true,
+                 success:function (data) {
+                	 var session = window.sessionStorage;
+                     session.setItem('userData',JSON.stringify(data));
+                 },
+                 error: function(XMLHttpRequest, textStatus, errorThrown) {
+                     console.log(XMLHttpRequest.status);
+                     creatTable(null);
+                 }
+             });
+         }
 		function dataCache(id){
 			var session = window.sessionStorage;
 			var userData = JSON.parse(session.getItem('userData'));
