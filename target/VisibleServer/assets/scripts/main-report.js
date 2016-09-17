@@ -16,6 +16,8 @@ define(function(require, exports, module){
 			+'</div>'
 			+'</div>';
 		 $('.report-edit').on('click', '.chart-con-add', function() {
+			 	loadData();
+			 	resetPopup();
 		        $('.popup-report').css('display', 'block');
 			 	var id = $(this).parents('.edit-chart').attr('id');
 				 //弹出框选择
@@ -36,11 +38,18 @@ define(function(require, exports, module){
 					 btnADD(id);
 				 });
 	     });
+		 function resetPopup() {
+			 $('.cache-box').css('display', 'block');
+			 $('.data-cache').removeClass('active');
+			 $('.view-cache').removeClass('active');
+			 $('.data-cache-box').css('display', 'none')
+			 $('.view-cache-box').css('display', 'none');
+		 }
 		$('.report-edit').on('click', '.chart-del', function() {
 			var id = $(this).parents('.edit-chart').attr('id');
 			$('#'+ id).remove();
 			delete report_content[id];
-			console.log(report_content);
+			//console.log(report_content);
 		});
 	     $('.popup-report').on('click', '.btn-cancel , .popup-cl', function() {
 		        $('.popup-report').css('display', 'none');
@@ -55,10 +64,35 @@ define(function(require, exports, module){
 			$('.data-cache-box').css('display', 'none');
 			$('.view-cache-box').css('display', 'none');
 			$('.cache-box').css('display', 'block');
+			$('.data-cache').removeClass('active');
+			$('.view-cache').removeClass('active');
 		});
 		$('.button-publish').on('click', function() {
 			addreport();
 		});
+		function loadData() {
+             var api = '../user/getallcache';
+             var userid = {userid: 1};
+             var session = window.sessionStorage;
+             session.setItem('userid',1);
+             $.ajax({
+                 type:'get',
+                 url: api,
+                 async: true,
+                 data: userid,
+                 dataType:"json",
+                 jsonp: 'callback',
+                 crossDomain:true,
+                 success:function (data) {
+                	 var session = window.sessionStorage;
+                     session.setItem('userData',JSON.stringify(data));
+                 },
+                 error: function(XMLHttpRequest, textStatus, errorThrown) {
+                     console.log(XMLHttpRequest.status);
+                     creatTable(null);
+                 }
+             });
+         }
 		function dataCache(id){
 			var session = window.sessionStorage;
 			var userData = JSON.parse(session.getItem('userData'));
@@ -120,7 +154,7 @@ define(function(require, exports, module){
 			var con = {};
 			con[id] = curData;
 			report_content= $.extend(true, report_content, con);
-			console.log(report_content);
+			//console.log(report_content);
 			addContent.call($id, report_content[id]);
 		}
 		function copyObj(obj){
@@ -137,7 +171,7 @@ define(function(require, exports, module){
 				+'</div>';
 			$(that).html(html);
 			$selector = $(this).find('#view'+cur.viewId);//.attr('id');
-			console.warn($selector);
+			//console.warn($selector);
 			setlayer($selector, cur, curData.layer, false);
 
 			$('.popup-report').css('display', 'none');
@@ -156,7 +190,7 @@ define(function(require, exports, module){
 				},
 				content: content
 			};
-			console.log(report);
+			//console.log(report);
 			$.ajax({
 		 		type:'get',
 		 		url: api,
@@ -166,7 +200,7 @@ define(function(require, exports, module){
 		 		jsonp: 'callback',
 		 		crossDomain:true,
 		 		success:function (data) {
-		 			console.log(data);
+		 			//console.log(data);
 					if(!!data.SUCCESS){
 						msgbox.promp('发布成功');
 						window.location.href = 'visual-report';

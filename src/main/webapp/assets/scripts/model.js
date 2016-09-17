@@ -123,8 +123,9 @@ define(function(require,exports,module){
                 propertyArr.push(arr[0]);
 				series.push({name: name, data: arr[1]});
 			}
+			//debugger
 		//&& propertyArr[0].length !== propertyArr[1].length
-			if(propertyArr.length > 1 ){
+			if(data.property.length > 1 ){
 				var objArr=[];
 				for(var i=0;i<propertyArr.length; i++){
 					var obj ={

@@ -14,19 +14,29 @@ define(function(require, exports, module) {
 	    title : {
 	        text: barData.title,
 	        x:'center',
-	        y:'top'
+	        y:'top',
+	        textStyle: {
+		    	color: '#fff'
+		    }
 	    },
+	    backgroundColor: '#2c343c',
 	    tooltip : {
 	        trigger: 'axis',
 	        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
             type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-       		}
+       		},
+       	 textStyle: {
+		    	color: '#fff'
+		    }
 	    },
 	    legend: {
 		        orient : 'vertical',
 		        x : 'left',
 		        y:'top',
-		        data: barData.objects
+		        data: barData.objects,
+		        textStyle: {
+			    	color: '#fff'
+			    }
 		 },
 	    toolbox: {
 	        show : true,
@@ -45,14 +55,44 @@ define(function(require, exports, module) {
 	    xAxis : [
 	        {
 	            type : 'category',
-	            data : barData.property
+	            data : barData.property,
+	            axisLine: {
+	                lineStyle: {
+	                    color: '#fff'
+	                }
+	            },
+	            axisLabel: {
+	                textStyle: {
+	                    color: '#fff'
+	                }
+	            },
+	            axisTick: {
+	                lineStyle: {
+	                    color: '#fff'
+	                }
+	            }
 	        }
 	    ],
 	    yAxis : [
 	        {
 	            type : 'value',
 	            name:' ',
-	            nameGap:3
+	            nameGap:3,
+	            axisLine: {
+	                lineStyle: {
+	                    color: '#fff'
+	                }
+	            },
+	            axisLabel: {
+	                textStyle: {
+	                    color: '#fff'
+	                }
+	            },
+	            axisTick: {
+	                lineStyle: {
+	                    color: '#fff'
+	                }
+	            }
 	        }
 	    ],
 	    series :series

@@ -29,7 +29,7 @@ define(function(require,exports,module){
 						if(index === 2 || index === 3 ||index === 4 || index === 10 ) {
 								switch(relationtype){
 									case 1:
-											return$this.pieToCom(data);
+											return $this.pieToCom(data);
 											break;
 									case 2:
 									case 4:
@@ -77,7 +77,7 @@ define(function(require,exports,module){
 				var series = [];
 				for(i = 0; i < oj.length; i++) {
 					var name = oj[i];
-					series.push({name: name, vlaue: data.relations[name][0][0]});
+						series.push({name: name, value: data.relations[name][0][0]});
 				}
 				dobj.title = data.title;
 				dobj.property = data.property[0];
@@ -123,7 +123,9 @@ define(function(require,exports,module){
                 propertyArr.push(arr[0]);
 				series.push({name: name, data: arr[1]});
 			}
-			if(propertyArr.length > 0 && propertyArr[0].length !== propertyArr[1].length){
+			//debugger
+		//&& propertyArr[0].length !== propertyArr[1].length
+			if(data.property.length > 1 ){
 				var objArr=[];
 				for(var i=0;i<propertyArr.length; i++){
 					var obj ={

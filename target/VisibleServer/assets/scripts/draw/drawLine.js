@@ -15,19 +15,29 @@ define(function(require, exports, module) {
 	    title : {
 	        text: lineData.title,
 	        x:'center',
-	        y:'top'
+	        y:'top',
+	        textStyle: {
+		    	color: '#fff'
+		    }
 	    },
+	    backgroundColor: '#2c343c',
 	    tooltip : {
 	        trigger: 'axis',
 	        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
             type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-       		}
+       		},
+       		textStyle: {
+    	    	color: '#fff'
+    	    },
 	    },
 	    legend: {
 		        orient : 'vertical',
 		        x : 'left',
 		        y:'top',
-		        data: lineData.objects
+		        data: lineData.objects,
+		        textStyle: {
+			    	color: '#fff'
+			    },
 		 },
 	    toolbox: {
 	        show : true,
@@ -47,7 +57,22 @@ define(function(require, exports, module) {
 	        {
 	            type : 'category',
 	            boundaryGap : false,
-	            data : lineData.property
+	            data : lineData.property,
+	            axisLine: {
+	                lineStyle: {
+	                    color: '#fff'
+	                }
+	            },
+	            axisLabel: {
+	                textStyle: {
+	                    color: '#fff'
+	                }
+	            },
+	            axisTick: {
+	                lineStyle: {
+	                    color: '#fff'
+	                }
+	            }
 	        }
 	    ],
 	    yAxis : [
@@ -57,6 +82,21 @@ define(function(require, exports, module) {
 	            nameGap:3,
 	            axisLabel : {
 	                formatter: '{value}'
+	            },
+	            axisLine: {
+	                lineStyle: {
+	                    color: '#fff'
+	                }
+	            },
+	            axisLabel: {
+	                textStyle: {
+	                    color: '#fff'
+	                }
+	            },
+	            axisTick: {
+	                lineStyle: {
+	                    color: '#fff'
+	                }
 	            }
 	        }
 	    ],

@@ -31,7 +31,7 @@ define(function(require, exports, module){
 			// view laylist click
 			$('.layer-lists').on('click', '.layer-list', function() {
 				var index = $(this).data('layer');
-				alert(index);
+				//alert(index);
 				var session = window.sessionStorage;
 				var current = JSON.parse(session.getItem('current'));
 				if(datamatch(current, index)){
@@ -63,9 +63,9 @@ define(function(require, exports, module){
 				local.setItem('layercache', JSON.stringify(layercache));
 				msg.promp('视图缓存成功');
 
-				window.setTimeout(function () {
-					window.location.href='view';
-				}, 1500);
+//				window.setTimeout(function () {
+//					window.location.href='view';
+//				}, 1500);
 			});// click end
 			
 		})
