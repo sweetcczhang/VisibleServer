@@ -251,9 +251,9 @@ define(function(require, exports, module) {
             'relationtype':6,
             'relations':[		
                                 {'source': "爱奇艺", 'target': ["电视剧", "电影", "综艺", "动漫"]},
-                                {'source': "乐视", 'target': ["电视剧", "电影", "综艺", "动漫"]},
-                                {'source': "搜狐视频", 'target': ["电视剧", "电影", "综艺", "动漫"]},
-                                {'source': "腾讯视频", 'target': ["电视剧", "电影", "综艺", "动漫"]},
+                                {'source': "乐视", 'target': [ "电影", "综艺", "动漫"]},
+                                {'source': "搜狐视频", 'target': [ "视频", "综艺", "动漫"]},
+                                {'source': "腾讯视频", 'target': [ "电影", "综艺", "动漫"]},
                                 
                         ]
                 

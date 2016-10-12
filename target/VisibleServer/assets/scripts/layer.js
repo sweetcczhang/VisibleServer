@@ -252,10 +252,11 @@ define(function(require, exports, module) {
 						.append("svg").attr("id","svgFord")			//在<body>中添加<svg>
 						.attr("width", width)	//设定<svg>的宽度属性
 						.attr("height", height);//设定<svg>的高度属性
-			//savePic(width-20,height,svg.attr("id"));
 			//1.确定初始数据
-			var ford = model.change(data, 7);
-			drawFord(svg,width,height,ford.nodes,ford.edges);
+			//var ford = model.change(data, 7);
+			var ford = model.change(source.sourceData6, 7);
+
+			drawFord(svg,width,height,ford);
 			$('body').on("contextmenu", 'svg', function(){
 				event.preventDefault();
 				var svgid = document.getElementById('svgFord');

@@ -2,7 +2,9 @@ define(function(require,exports,module){
 	var imgdown = require('../imgdown');
 	//绘制力导向图
 	require('../../css/ford.css');
-	var drawFord = function(svg,width,height,nodes,edges){
+	var drawFord = function(svg,width,height,ford){
+		var nodes = ford.nodes,
+			edges = ford.edges;
 			//2.转换数据
 		var force = d3.layout.force()
 							.nodes(nodes)	//设定顶点数组
@@ -15,8 +17,8 @@ define(function(require,exports,module){
 		
 		force.start();	//开启布局计算
 		
-		console.log(nodes);	//输出转换后的数据
-		console.log(edges);
+		// console.log(nodes);	//输出转换后的数据
+		// console.log(edges);
 		
 		//3.绘制
 		var color = d3.scale.category20();
@@ -28,7 +30,7 @@ define(function(require,exports,module){
 						})
 						.on("dragend",function(d,i){
 							//拖拽结束后变为原来的颜色
-							d3.select(this).style("fill",color(i));
+							d3.select(this).style("fill",color(d.weight % 20));
 						})
 						.on("drag",function(d){
 							//拖拽中对象变为黄色
@@ -39,7 +41,7 @@ define(function(require,exports,module){
 		var lineupdate=svg.selectAll(".forceLine")
 							.data(edges);
 		var lineenter=lineupdate.enter().append("line")
-							.attr("class","forceLine");;				
+							.attr("class","forceLine");
 		var lineexit=svg.selectAll(".forceLine")
 							.data(edges)
 							.exit().remove();
@@ -50,9 +52,11 @@ define(function(require,exports,module){
 		var circlesenter=circlesupdate.enter()
 							.append("circle")
 							.attr("class","forceCircle")
-							.attr("r",20)
+							.attr("r",function(d,i) {
+								return circleSize(d.weight);
+							})
 							.style("fill",function(d,i){
-								return color(i);
+								return color(d.weight % 20);
 							})
 							.call(force.drag);
 		var circlesexit=circlesupdate.exit().remove;
@@ -82,7 +86,7 @@ define(function(require,exports,module){
 			 circlesenter.attr("cy",function(d){ return d.y; });
 			 
 			 //更新顶点文字
-			 textsenter.attr("x",function(d){ return d.x; });
+			 textsenter.attr("x",function(d){ console.log(d); return d.x; });
 			 textsenter.attr("y",function(d){ return d.y; });
 			 
 		});
@@ -99,6 +103,10 @@ define(function(require,exports,module){
 		});
 	}
 	imgdown.svgAsPng();
+
+	function circleSize(weight) {
+		return weight*2+12 > 25 ? 25 : weight*2+12;
+	}
 	
 	module.exports = drawFord;
 });

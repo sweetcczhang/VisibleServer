@@ -34,11 +34,13 @@ define(function(require, exports, module){
 				//alert(index);
 				var session = window.sessionStorage;
 				var current = JSON.parse(session.getItem('current'));
-				if(datamatch(current, index)){
-					current.type = index;
-					session.setItem('current', JSON.stringify(current));
-					layer($('.view-area'), current, index, false);
-				}
+				layer($('.view-area'), current, index, false);
+				// if(datamatch(current, index)){
+				// 	current.type = index;
+				// 	session.setItem('current', JSON.stringify(current));
+				// 	layer($('.view-area'), current, index, false);
+				// }
+
 			});
 			//report box
 			$('.report-area').on('click', '.img-box', function() {
